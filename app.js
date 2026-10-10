@@ -363,19 +363,39 @@
   }
 
   // Icons
+  // Which way an exit's arrow points: away from the middle of the map, toward the edge it leaves by (in 45° steps).
+  function exitAngle(p) {
+    if (p.cat !== 'travel') return null;
+    const m = MAP_BY_ID[p.map], b = bannerOf(p), o = state.poiOverrides[p.id];
+    const x = o ? o.x : b ? (b[0] + b[2]) / 2 : p.x, y = o ? o.y : b ? (b[1] + b[3]) / 2 : p.y;
+    if (!m || !Number.isFinite(x) || !Number.isFinite(y)) return null;
+    // compare as fractions of the map so wide and tall maps behave alike
+    const dx = (x - m.width / 2) / m.width, dy = (y - m.height / 2) / m.height;
+    if (Math.hypot(dx, dy) < 0.08) return null; // in the middle of the map: no meaningful direction
+    return Math.round(Math.atan2(dy, dx) * 180 / Math.PI / 45) * 45;
+  }
+  const pointsLeft = p => { const a = exitAngle(p); return a !== null && Math.abs(a) > 90; };
+  function glyphHtml(p) {
+    const c = CATS[p.cat], a = exitAngle(p);
+    if (p.cat !== 'travel') return esc(p.label || c.glyph);
+    return a === null ? '⇄' : `<span class="exit-arrow" style="transform:rotate(${a}deg)">➜</span>`;
+  }
+
   function poiIcon(poi) {
     const c = CATS[poi.cat];
     const note = (state.poiNotes[poi.id] || '').trim() ? ' has-note' : '';
     if (bannerOf(poi)) {
-      // the banner is the place; this small badge sits off the end of the scroll so the name stays readable
+      // the banner is the place; this small badge sits off the end of the scroll so the name stays readable.
+      // Exits that leave to the left get their badge on the left end.
+      const left = pointsLeft(poi) && !state.poiOverrides[poi.id];
       return L.divIcon({
-        className: 'nh-marker', iconSize: [18, 18], iconAnchor: [-3, 9], tooltipAnchor: [9, -9],
-        html: `<div class="poi-icon poi-badge${note}" style="--c:${c.color}">${c.glyph}</div>`,
+        className: 'nh-marker', iconSize: [18, 18], iconAnchor: left ? [21, 9] : [-3, 9], tooltipAnchor: left ? [-12, -9] : [9, -9],
+        html: `<div class="poi-icon poi-badge${note}" style="--c:${c.color}">${glyphHtml(poi)}</div>`,
       });
     }
     return L.divIcon({
       className: 'nh-marker', iconSize: [28, 28], iconAnchor: [14, 14],
-      html: `<div class="poi-icon${note}" style="--c:${c.color}">${c.glyph}</div>`,
+      html: `<div class="poi-icon${note}" style="--c:${c.color}">${glyphHtml(poi)}</div>`,
     });
   }
   function pinIcon(color, glyph) {
@@ -406,7 +426,7 @@
     if (o && !hitOnly(p)) return [o.y, o.x];
     const b = bannerOf(p);
     if (b && hitOnly(p)) return [(b[1] + b[3]) / 2, (b[0] + b[2]) / 2];
-    if (b) return [(b[1] + b[3]) / 2, b[2]];
+    if (b) return [(b[1] + b[3]) / 2, pointsLeft(p) ? b[0] : b[2]];
     return Number.isFinite(p.x) && Number.isFinite(p.y) ? [p.y, p.x] : null; // null: not placed on the map yet
   }
   const placed = p => !!poiPos(p);
@@ -415,6 +435,17 @@
   function buildPois() {
     POIS.forEach(makePoiMarker);
   }
+
+  // Things that react to a double-click delay their single-click action briefly, so the sidebar doesn't open
+  // (and shift the map) between the two clicks.
+  let clickTimer = null;
+  function clickLater(canDouble, single) {
+    clearTimeout(clickTimer);
+    if (!canDouble) return single();
+    clickTimer = setTimeout(single, 260);
+  }
+  const cancelClick = () => clearTimeout(clickTimer);
+  const canFollow = p => !!destOf(p) || partnersOf(p).length > 0;
 
   // Double-click: travel through an exit, or follow a map connection to its other end.
   function followPoi(p) {
@@ -438,8 +469,8 @@
         className: 'banner-hit mark-hit', color: CATS[p.cat].color, weight: 2, opacity: 0, fillColor: CATS[p.cat].color, fillOpacity: 0, pmIgnore: true,
       });
       r.bindTooltip(tip, { className: 'nh-tip', direction: 'top', offset: [0, -4] });
-      r.on('click', e => { L.DomEvent.stopPropagation(e); select('poi', p.id); });
-      r.on('dblclick', e => { L.DomEvent.stopPropagation(e); followPoi(p); });
+      r.on('click', e => { L.DomEvent.stopPropagation(e); clickLater(canFollow(p), () => select('poi', p.id)); });
+      r.on('dblclick', e => { L.DomEvent.stopPropagation(e); cancelClick(); followPoi(p); });
       r.on('add', () => {
         r._path?.classList.toggle('selected', !!isSelected('poi', p.id));
         r._path?.classList.toggle('noted', !!(state.poiNotes[p.id] || '').trim());
@@ -451,8 +482,8 @@
     {
       const m = L.marker(poiPos(p), { icon: poiIcon(p), pmIgnore: true, riseOnHover: true, keyboard: true, title: '' });
       m.bindTooltip(tip, { className: 'nh-tip', direction: 'top', offset: [0, -14] });
-      m.on('click', () => select('poi', p.id));
-      m.on('dblclick', () => followPoi(p));
+      m.on('click', () => clickLater(canFollow(p), () => select('poi', p.id)));
+      m.on('dblclick', () => { cancelClick(); followPoi(p); });
       m.on('dragend', () => {
         const ll = m.getLatLng();
         state.poiOverrides[p.id] = { x: round(ll.lng), y: round(ll.lat) };
@@ -469,8 +500,8 @@
           className: 'banner-hit', color: CATS[p.cat].color, weight: 2, opacity: 0, fillColor: CATS[p.cat].color, fillOpacity: 0, pmIgnore: true,
         });
         r.bindTooltip(m.getTooltip()._content, { className: 'nh-tip', direction: 'top', offset: [0, -4] });
-        r.on('click', e => { L.DomEvent.stopPropagation(e); select('poi', p.id); });
-        r.on('dblclick', e => { L.DomEvent.stopPropagation(e); followPoi(p); });
+        r.on('click', e => { L.DomEvent.stopPropagation(e); clickLater(canFollow(p), () => select('poi', p.id)); });
+        r.on('dblclick', e => { L.DomEvent.stopPropagation(e); cancelClick(); followPoi(p); });
         r.on('add', () => { if (isSelected('poi', p.id)) r._path?.classList.add('selected'); });
         bannerRects[p.id] = r;
         setOf(p.map).poi[p.cat].addLayer(r);
@@ -694,6 +725,7 @@
         { className: 'nh-tip', direction: 'top', sticky: rec.kind !== 'marker' });
     }
     if (rec.kind === 'marker') layer.on('dblclick', () => {
+      cancelClick();
       const d = destOf({ link: rec.link });
       if (d) return travel(d.id);
       const other = pinPartner(rec);
@@ -702,7 +734,8 @@
     layer.on('click', e => {
       L.DomEvent.stopPropagation(e);
       if (map.pm.globalRemovalModeEnabled()) return;
-      select('ann', rec.id);
+      const canDouble = rec.kind === 'marker' && (!!destOf({ link: rec.link }) || !!pinPartner(rec));
+      clickLater(canDouble, () => select('ann', rec.id));
     });
     const sync = () => { rec.geo = geoOf(rec.kind, layer); touch(rec); save(); if (isSelected('ann', rec.id)) renderMeta(rec); };
     layer.on('pm:edit', sync);
@@ -1266,7 +1299,7 @@
         const note = state.poiNotes[p.id] ? ' · ✎ note' : '';
         const d = destOf(p);
         const sub = (d ? `→ ${esc(d.name)}` : p.toPage ? 'no map yet' : n ? `${n} NPCs` : esc(p.desc ? p.desc.split('.')[0] : '')) + (placed(p) ? '' : ' · not placed');
-        return `<li data-key="poi:${p.id}"><span class="dot" style="color:${c.color}">${esc(p.label || c.glyph)}</span>
+        return `<li data-key="poi:${p.id}"><span class="dot" style="color:${c.color}">${glyphHtml(p)}</span>
           <span class="name">${esc(p.name)}<small>${sub}${note}</small></span>${d ? `<button class="btn small go-btn" data-travel="${d.id}" title="Travel to ${esc(d.name)}">Go →</button>` : ''}</li>`;
       }).join('')}${extra.map(a => `<li data-key="ann:${a.id}"><span class="dot" style="color:${colorOf(a)}">➜</span>
           <span class="name">${esc(a.title || 'Untitled')}<small>your pin → ${esc(mapName(a.link))}</small></span><button class="btn small go-btn" data-travel="${a.link}">Go →</button></li>`).join('')}</ul>`;

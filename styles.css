@@ -460,3 +460,5 @@ dialog form { text-align: right; }
 .mi-g-secret { background: none; color: #ff2b2b; }
 .mi-g-secret span { font-size: calc(var(--mi, 24px) * var(--k, 1) * 1.1); text-shadow: 0 0 2px #000; }
 .mi-g-tile { background: rgba(12, 12, 14, .88); border: max(1.5px, calc(var(--mi, 24px) * .06)) solid #cfd6dc; border-radius: 3px; color: #fff; }
+
+.exit-arrow { display: inline-block; line-height: 1; }
