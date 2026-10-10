@@ -59,11 +59,22 @@ The Tomb of the Last Wyrmsbane is set up this way. To do another dungeon, add it
 
 Without any of that, the **＋ Icon** palette has dungeon symbols (numbered spot, map connection, trap, secret wall, stairs, locked door, chest). Two "Map connection" pins with the same label on one map act as the two ends of a passage.
 
+## Guides
+
+- **Leveling guide:** hunting spots by level, from the wiki's "Per-Level Hunting Guide". Enter your level and choose solo, group or either; each spot's zone opens that map.
+- **Skills guide:** every skill page on the wiki. Tradeskills show their trainers, tools and locations, and the recipe tiers by "trivial" level. Enter your skill to see which tier to work on.
+
+The guide data is a snapshot in `data/guides/`. To refresh it, run `node crawl_skills.js` and then `node gen_guides.js` from `work/`. Each skill's page is a separate file in `data/guides/skills/`, loaded when you open it. The level and skill values you enter are saved in your browser.
+
+`guides.js` holds the guide screens. It talks to the map through `window.MonsterMap`, which `app.js` sets up.
+
 ## Files
 
 | File | Purpose |
 |---|---|
-| `index.html`, `styles.css`, `app.js` | The app (Leaflet + Leaflet-Geoman from a CDN) |
+| `index.html`, `styles.css`, `app.js` | The app: maps, panels, notes (Leaflet + Leaflet-Geoman from a CDN) |
+| `guides.js` | The Leveling and Skills guide screens |
+| `data/guides/` | Guide data from the wiki (generated) |
 | `data/atlas.js` | Shared place categories; the map registry |
 | `data/icon-types.js` | Legend vocabulary: icon types, level colours, legend letters |
 | `data/parse-wiki.js` | Turns a zone page's wikitext into quests, NPCs, items and zone info |

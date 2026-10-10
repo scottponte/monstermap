@@ -6,51 +6,84 @@
   <title>Monster Map</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@geoman-io/leaflet-geoman-free@2.17.0/dist/leaflet-geoman.css">
-  <link rel="stylesheet" href="styles.css?v=15">
+  <link rel="stylesheet" href="styles.css?v=17">
 </head>
 <body>
   <header class="topbar">
-    <button class="icon-btn only-mobile" id="btn-sidebar" title="Panels" aria-label="Toggle panels">☰</button>
-    <div class="brand">
-      <span class="brand-mark">◐</span>
-      <div>
-        <h1>Monster Map</h1>
-        <p>Monsters &amp; Memories · Aêthoril</p>
-      </div>
-    </div>
+    <button class="bar-btn only-mobile" id="btn-sidebar" title="Show or hide the map panel" aria-label="Show or hide the map panel">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14"/></svg>
+    </button>
+    <a class="brand" href="#" id="brand" title="Monster Map – maps and guides for Monsters &amp; Memories">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M16 3 27 8v9c0 6-4.5 10-11 12C9.5 27 5 23 5 17V8z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+        <path d="M11 20l3.2-8 3.6 4.2L20 13l1.5 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="brand-name">Monster Map</span>
+    </a>
+
+    <nav class="views" id="views" aria-label="Sections">
+      <button data-view="map" class="active">Map</button>
+      <button data-view="leveling">Leveling</button>
+      <button data-view="skills">Skills</button>
+    </nav>
 
     <label class="map-picker" title="Switch map">
-      <span class="map-picker-icon" aria-hidden="true">🗺</span>
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 3 2.5 5v12L7 15l6 2 4.5-2V3L13 5zM7 3v12M13 5v12"/></svg>
       <select id="map-select" aria-label="Map"></select>
     </label>
 
     <div class="search">
-      <input id="search" type="search" placeholder="Search every map: places, NPCs, quests, items, notes…  ( / )" autocomplete="off" spellcheck="false">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="5.5"/><path d="m13.5 13.5 4 4"/></svg>
+      <input id="search" type="search" placeholder="Search maps, places, NPCs, quests, items, skills…" autocomplete="off" spellcheck="false">
+      <kbd class="search-key">/</kbd>
       <div class="search-results" id="search-results" hidden></div>
     </div>
 
     <div class="actions">
-      <button class="btn" id="btn-icons" title="Place an icon on the map, or add your own icons">＋ <span class="hide-sm">Icon</span></button>
-      <button class="btn" id="btn-edit-places" title="Drag the built-in place markers to fix their positions">✥ <span class="hide-sm">Edit places</span></button>
-      <button class="btn" id="btn-sync" title="Pull the latest Night Harbor page from the wiki">⟳ <span class="hide-sm">Sync wiki</span></button>
-      <button class="btn" id="btn-export" title="Download your notes as JSON">⤓ <span class="hide-sm">Export</span></button>
-      <button class="btn" id="btn-import" title="Load notes from a JSON export">⤒ <span class="hide-sm">Import</span></button>
-      <button class="icon-btn" id="btn-help" title="Help" aria-label="Help">?</button>
+      <button class="btn" id="btn-icons" title="Place an icon on the map, or add your own icons">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg><span class="hide-sm">Icon</span>
+      </button>
+      <div class="menu">
+        <button class="btn" id="btn-menu" aria-haspopup="true" aria-expanded="false" title="Guides, tools and help">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14"/></svg><span class="hide-sm">Menu</span>
+        </button>
+        <div class="menu-pop" id="menu-pop" hidden>
+          <div class="menu-label">Guides</div>
+          <button data-view="leveling"><span class="mi-ico">⚔</span>Leveling guide<small>Where to hunt at your level</small></button>
+          <button data-view="skills"><span class="mi-ico">⚒</span>Skills guide<small>Tradeskills and class skills</small></button>
+          <div class="menu-label">Map tools</div>
+          <button id="btn-edit-places"><span class="mi-ico">✥</span>Edit places<small>Drag markers and icons to fix them</small></button>
+          <button id="btn-sync"><span class="mi-ico">⟳</span>Sync wiki<small>Refresh this map's wiki data</small></button>
+          <div class="menu-label">My notes</div>
+          <button id="btn-export"><span class="mi-ico">⤓</span>Export<small>Save your notes to a file</small></button>
+          <button id="btn-import"><span class="mi-ico">⤒</span>Import<small>Load notes from a file</small></button>
+          <div class="menu-sep"></div>
+          <button id="btn-help"><span class="mi-ico">?</span>Help</button>
+        </div>
+      </div>
       <input type="file" id="import-file" accept="application/json,.json" hidden>
     </div>
   </header>
 
-  <main class="layout">
-    <aside class="sidebar" id="sidebar">
-      <nav class="tabs" role="tablist">
-        <button role="tab" data-tab="places" class="active">Places</button>
-        <button role="tab" data-tab="notes">My notes <span class="count" id="notes-count">0</span></button>
-        <button role="tab" data-tab="zone">Zone</button>
-        <button role="tab" data-tab="layers">Layers</button>
-      </nav>
+  <main class="layout" id="layout" data-view="map">
+    <aside class="sidebar" id="sidebar" aria-label="Map panel">
+      <div class="panel-bar">
+        <nav class="tabs" role="tablist">
+          <button role="tab" data-tab="places" class="active">Places</button>
+          <button role="tab" data-tab="notes">Notes <span class="count" id="notes-count">0</span></button>
+          <button role="tab" data-tab="zone">Zone</button>
+          <button role="tab" data-tab="layers">Layers</button>
+        </nav>
+        <button class="bar-btn" id="left-pin" title="Pin: keep this panel docked beside the map" aria-pressed="true">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 3h5l-.7 5 2.7 3H5.5l2.7-3zM10 11v6"/></svg>
+        </button>
+        <button class="bar-btn" id="left-collapse" title="Collapse this panel">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m11 5-5 5 5 5M15 5l-5 5 5 5"/></svg>
+        </button>
+      </div>
       <section class="tab-panel" data-panel="places" id="panel-places"></section>
       <section class="tab-panel" data-panel="notes" id="panel-notes" hidden></section>
       <section class="tab-panel" data-panel="zone" id="panel-zone" hidden></section>
@@ -60,13 +93,32 @@
 
     <div class="map-wrap">
       <div id="map"></div>
+      <button class="edge-tab left" id="left-open" title="Show the map panel" hidden>
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m9 5 5 5-5 5M5 5l5 5-5 5"/></svg><span>Places</span>
+      </button>
+      <button class="edge-tab right" id="right-open" title="Show the details panel" hidden>
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m11 5-5 5 5 5M15 5l-5 5 5 5"/></svg><span id="right-open-label">Details</span>
+      </button>
       <div class="coords" id="coords"></div>
       <div class="place-hint" id="place-hint" hidden></div>
+      <div class="edit-pill" id="edit-pill" hidden>Editing places: drag markers and icons <button type="button" id="edit-done">Done</button></div>
     </div>
 
-    <aside class="drawer" id="drawer" hidden>
+    <aside class="drawer" id="drawer" aria-label="Details panel" hidden>
+      <div class="panel-bar">
+        <button class="bar-btn" id="right-collapse" title="Collapse this panel">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m9 5 5 5-5 5M5 5l5 5-5 5"/></svg>
+        </button>
+        <button class="bar-btn" id="right-pin" title="Pin: keep this panel docked beside the map" aria-pressed="true">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 3h5l-.7 5 2.7 3H5.5l2.7-3zM10 11v6"/></svg>
+        </button>
+        <span class="bar-title">Details</span>
+      </div>
       <div class="drawer-inner" id="drawer-body"></div>
     </aside>
+
+    <section class="guide" id="view-leveling" aria-label="Leveling guide" hidden></section>
+    <section class="guide" id="view-skills" aria-label="Skills guide" hidden></section>
   </main>
 
   <dialog id="palette">
@@ -112,6 +164,9 @@
   <dialog id="help">
     <h2>Using Monster Map</h2>
     <ul>
+      <li><b>Map, Leveling, Skills</b> at the top switch between the maps and the two guides. The <b>Leveling guide</b> shows where to hunt at your level; the <b>Skills guide</b> covers every skill, and for tradeskills shows which recipes to work on at your skill. Zone names in the guides open that map.</li>
+      <li>Both side panels can be <b>collapsed</b> («) to a tab on the map's edge, and <b>pinned</b> or unpinned (the pin button). Unpinned panels float over the map instead of pushing it aside.</li>
+      <li>The <b>Menu</b> has the guides, Edit places, Sync wiki, Export, Import and this help.</li>
       <li><b>Click a marker</b> to see what the wiki knows about that place: NPCs, quests and loot. Add your own notes to any place.</li>
       <li>Switch maps with the <b>map picker</b> at the top. Exits that lead to another mapped zone (like “To Shaded Dunes”) have a <b>Travel</b> button; double-clicking them works too. You arrive at the matching exit on the other side.</li>
       <li><b>＋ Add a map</b> (in the map picker) adds any zone. Type its wiki page name and the app finds the map image on the wiki and loads its NPCs, quests and items. Exits that name that zone link to it automatically.</li>
@@ -120,7 +175,7 @@
       <li>Use the <b>drawing tools</b> (top-right of the map) for pins, routes, areas and circles. Click any drawing to edit its title, category, colour and notes.</li>
       <li>The legend icons (banks, inns, tradeskills, notable NPCs, mob levels, respawn points) are live markers. Click one to rename it, change its type or level, add notes, or remove it.</li>
       <li><b>＋ Icon</b> opens every icon. Click one, then click the map to place it. You can add your own there from a picture or an emoji; they are saved with your notes and included in Export.</li>
-      <li><b>Edit places</b> lets you drag place markers and map icons if one is in the wrong spot.</li>
+      <li><b>Edit places</b> (in the Menu) lets you drag place markers and map icons if one is in the wrong spot.</li>
       <li>Press <kbd>/</kbd> to search. Every place and note has a shareable link (the address bar updates as you click).</li>
       <li>In notes, <code>[[Page Name]]</code> links to the wiki.</li>
       <li>Everything is saved in this browser. Use <b>Export</b> to back up or share, and <b>Import</b> to load an export.</li>
@@ -132,22 +187,25 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@geoman-io/leaflet-geoman-free@2.17.0/dist/leaflet-geoman.min.js"></script>
-  <script src="data/parse-wiki.js?v=15"></script>
-  <script src="data/atlas.js?v=15"></script>
-  <script src="data/icon-types.js?v=15"></script>
+  <script src="data/parse-wiki.js?v=17"></script>
+  <script src="data/atlas.js?v=17"></script>
+  <script src="data/icon-types.js?v=17"></script>
   <!-- One block per map: definition, painted-icon data, wiki snapshot -->
-  <script src="data/maps/night-harbor.js?v=15"></script>
-  <script src="data/maps/night-harbor-icons.js?v=15"></script>
-  <script src="data/maps/night-harbor-wiki.js?v=15"></script>
-  <script src="data/maps/night-harbor-labels.js?v=15"></script>
-  <script src="data/maps/shaded-dunes.js?v=15"></script>
-  <script src="data/maps/shaded-dunes-icons.js?v=15"></script>
-  <script src="data/maps/shaded-dunes-wiki.js?v=15"></script>
-  <script src="data/maps/shaded-dunes-labels.js?v=15"></script>
+  <script src="data/maps/night-harbor.js?v=17"></script>
+  <script src="data/maps/night-harbor-icons.js?v=17"></script>
+  <script src="data/maps/night-harbor-wiki.js?v=17"></script>
+  <script src="data/maps/night-harbor-labels.js?v=17"></script>
+  <script src="data/maps/shaded-dunes.js?v=17"></script>
+  <script src="data/maps/shaded-dunes-icons.js?v=17"></script>
+  <script src="data/maps/shaded-dunes-wiki.js?v=17"></script>
+  <script src="data/maps/shaded-dunes-labels.js?v=17"></script>
   <!-- Zones crawled from the wiki (work/crawl.js, work/gen_wiki_maps.js) -->
-  <script src="data/maps/wiki-zones.js?v=15"></script>
-  <script src="data/maps/dungeons.js?v=15"></script>
-  <script src="data/maps/wiki-zones-wiki.js?v=15"></script>
-  <script src="app.js?v=15"></script>
+  <script src="data/maps/wiki-zones.js?v=17"></script>
+  <script src="data/maps/dungeons.js?v=17"></script>
+  <script src="data/maps/wiki-zones-wiki.js?v=17"></script>
+  <script src="data/guides/leveling.js?v=17"></script>
+  <script src="data/guides/skills.js?v=17"></script>
+  <script src="guides.js?v=17"></script>
+  <script src="app.js?v=17"></script>
 </body>
 </html>

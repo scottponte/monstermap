@@ -63,6 +63,7 @@
     const base = {
       version: 3, mapId: 'night-harbor', annotations: [], poiNotes: {}, poiOverrides: {}, iconEdits: {}, hidden: {},
       images: {}, customUrls: {}, customMaps: [], customIcons: [], imageOpacity: 1,
+      ui: { leftOpen: true, leftPinned: true, rightOpen: true, rightPinned: true },
     };
     try {
       const s = JSON.parse(localStorage.getItem(STORE_KEY) || 'null');
@@ -74,6 +75,7 @@
         for (const a of s.annotations || []) a.map = a.map || 'night-harbor';
         s.version = 3;
       }
+      if (s) s.ui = Object.assign({}, base.ui, s.ui);
       return s ? Object.assign(base, s) : base;
     } catch { return base; }
   }
@@ -137,6 +139,8 @@
   const SEED_ICONS = BUILTIN_MAPS.flatMap(m => (ICONS_BY_MAP[m.id] || []).map(i => ({ ...i, map: m.id })));
   let cur = MAP_BY_ID[state.mapId] || MAPS[0];
   let mapReady = false;
+  let view = 'map';        // 'map' | 'leveling' | 'skills'
+  let pendingFit = false;  // the map was laid out while hidden and needs fitting when shown
   const annMap = rec => rec.map || 'night-harbor';
   const mapName = id => MAP_BY_ID[id]?.name || 'a removed map';
   const mapOfPage = page => page ? MAPS.find(m => m.page && normPage(m.page).toLowerCase() === normPage(page).toLowerCase()) : null;
@@ -320,6 +324,7 @@
   function switchMap(id, { fit = true } = {}) {
     const next = MAP_BY_ID[id];
     if (!next) return false;
+    if (view !== 'map' && mapReady) setView('map');
     if (next === cur && mapReady) { if (fit) map.fitBounds(boundsOf(cur), { animate: false }); return true; }
     if (mapReady) showMapLayers(cur.id, false);
     if (selected) closeDrawer();
@@ -335,6 +340,7 @@
     applyImage();
     showMapLayers(cur.id, true);
     mapReady = true;
+    if (!map.getSize().x) pendingFit = true;
     if (!selected) viewHash();
     updateIconScale();
     document.title = `${cur.name} · Monster Map`;
@@ -532,6 +538,8 @@
     editingPlaces = on;
     document.body.classList.toggle('editing-places', on);
     $('#btn-edit-places').classList.toggle('on', on);
+    $('#edit-pill').hidden = !on;
+    if (on) setView('map');
     for (const m of [...Object.values(poiMarkers), ...Object.values(iconMarkers)]) on ? m.dragging?.enable() : m.dragging?.disable();
     toast(on ? 'Drag place markers and map icons to move them. Click "Edit places" again when done.' : 'Positions saved.');
   }
@@ -858,9 +866,10 @@
       return;
     }
     if (selected && !map.pm.globalDrawModeEnabled()) closeDrawer();
+    autoHideLeft();
   });
   map.on('mousemove', e => { $('#coords').textContent = `x ${Math.round(e.latlng.lng)} · y ${Math.round(e.latlng.lat)}`; });
-  const viewHash = () => setHash(`map=${cur.id}&at=${Math.round(map.getCenter().lng)},${Math.round(map.getCenter().lat)},${map.getZoom()}`);
+  const viewHash = () => view === 'map' && setHash(`map=${cur.id}&at=${Math.round(map.getCenter().lng)},${Math.round(map.getCenter().lat)},${map.getZoom()}`);
   map.on('moveend', () => { if (!selected && mapReady) viewHash(); });
 
   function startPlacing(partial, label) {
@@ -870,7 +879,7 @@
     hint.innerHTML = `Click the map to place <b>${esc(label)}</b><button type="button">Cancel</button>`;
     hint.hidden = false;
     $('button', hint).onclick = stopPlacing;
-    document.body.classList.remove('sidebar-open');
+    autoHideLeft();
   }
   function stopPlacing() {
     placing = null;
@@ -895,6 +904,76 @@
     $$('#panel-places li, #panel-notes li').forEach(li => li.classList.toggle('active', li.dataset.key === `${selected.type}:${selected.id}`));
   }
 
+  // ---------- panels: collapse & pin ----------
+  // Each side panel can be collapsed to a tab on the map's edge, and pinned (docked beside the map)
+  // or unpinned (floating over it, so opening it doesn't move the map).
+  const layoutEl = $('#layout');
+  const isPhone = () => matchMedia('(max-width: 760px)').matches;
+  if (isPhone()) state.ui.leftOpen = false;
+  function applyPanels() {
+    const ui = state.ui, phone = isPhone(), hasSel = !!selected;
+    layoutEl.classList.toggle('left-collapsed', !ui.leftOpen);
+    layoutEl.classList.toggle('left-tab', !ui.leftOpen);
+    layoutEl.classList.toggle('left-float', ui.leftOpen && !ui.leftPinned && !phone);
+    layoutEl.classList.toggle('right-collapsed', !ui.rightOpen);
+    layoutEl.classList.toggle('right-tab', hasSel && !ui.rightOpen);
+    layoutEl.classList.toggle('right-float', !ui.rightPinned && !phone);
+    layoutEl.classList.toggle('has-selection', hasSel);
+    $('#left-open').hidden = ui.leftOpen;
+    $('#right-open').hidden = !(hasSel && !ui.rightOpen);
+    $('#right-open-label').textContent = $('#drawer-body h2')?.textContent || 'Details';
+    for (const [id, pinned] of [['#left-pin', ui.leftPinned], ['#right-pin', ui.rightPinned]]) {
+      $(id).setAttribute('aria-pressed', String(pinned));
+      $(id).title = pinned ? 'Pinned beside the map. Click to let this panel float over the map.' : 'Floating over the map. Click to pin it beside the map.';
+    }
+    map.invalidateSize();
+  }
+  function setPanel(patch) { Object.assign(state.ui, patch); save(); applyPanels(); }
+  // A floating (or phone) left panel gets out of the way once you've picked something.
+  function autoHideLeft() { if (state.ui.leftOpen && (isPhone() || !state.ui.leftPinned)) setPanel({ leftOpen: false }); }
+  $('#left-collapse').onclick = () => setPanel({ leftOpen: false });
+  $('#left-open').onclick = () => setPanel({ leftOpen: true });
+  $('#left-pin').onclick = () => setPanel({ leftPinned: !state.ui.leftPinned });
+  $('#right-collapse').onclick = () => setPanel({ rightOpen: false });
+  $('#right-open').onclick = () => setPanel({ rightOpen: true });
+  $('#right-pin').onclick = () => setPanel({ rightPinned: !state.ui.rightPinned });
+  window.addEventListener('resize', debounce(applyPanels, 150));
+
+  // ---------- views: map and guides ----------
+  function setView(v) {
+    if (!['map', 'leveling', 'skills'].includes(v)) v = 'map';
+    view = v;
+    layoutEl.dataset.view = v;
+    $$('#views button').forEach(b => b.classList.toggle('active', b.dataset.view === v));
+    $('#view-leveling').hidden = v !== 'leveling';
+    $('#view-skills').hidden = v !== 'skills';
+    $('#btn-icons').hidden = v !== 'map';
+    if (v === 'map') {
+      document.title = `${cur.name} · Monster Map`;
+      map.invalidateSize();
+      if (pendingFit) { pendingFit = false; map.fitBounds(boundsOf(cur), { animate: false }); }
+      if (selected) setHash(`${{ poi: 'poi', icon: 'icon', ann: 'note' }[selected.type]}=${selected.id}`); else viewHash();
+    } else {
+      stopPlacing();
+      document.title = `${v === 'leveling' ? 'Leveling guide' : 'Skills guide'} · Monster Map`;
+      window.MonsterGuides?.show(v);
+    }
+  }
+  $('#views').addEventListener('click', e => { const b = e.target.closest('[data-view]'); if (b) setView(b.dataset.view); });
+  $('#brand').addEventListener('click', e => { e.preventDefault(); setView('map'); });
+
+  const menuPop = $('#menu-pop'), menuBtn = $('#btn-menu');
+  function toggleMenu(open = menuPop.hidden) { menuPop.hidden = !open; menuBtn.setAttribute('aria-expanded', String(open)); }
+  menuBtn.addEventListener('click', e => { e.stopPropagation(); toggleMenu(); });
+  menuPop.addEventListener('click', e => {
+    const b = e.target.closest('button');
+    if (!b) return;
+    toggleMenu(false);
+    if (b.dataset.view) setView(b.dataset.view);
+  });
+  document.addEventListener('click', e => { if (!e.target.closest('.menu')) toggleMenu(false); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleMenu(false); });
+
   function select(type, id, opts = {}) {
     selected = { type, id };
     setHash(`${{ poi: 'poi', icon: 'icon', ann: 'note' }[type]}=${id}`);
@@ -902,16 +981,16 @@
     else if (type === 'icon') renderIconDrawer(iconRec(id));
     else renderAnnDrawer(state.annotations.find(a => a.id === id), opts);
     $('#drawer').hidden = false;
-    $('#drawer').scrollTop = 0;
+    $('#drawer-body').scrollTop = 0;
     markSelected();
-    map.invalidateSize();
+    applyPanels();
   }
 
   function closeDrawer() {
     selected = null;
     $('#drawer').hidden = true;
     markSelected();
-    map.invalidateSize();
+    applyPanels();
     setHash('');
   }
 
@@ -950,6 +1029,7 @@
 
   // Select something anywhere in the atlas, switching maps if needed.
   function go(type, id, opts) {
+    if (view !== 'map') setView('map');
     const m = mapOfItem(type, id);
     const switched = !!m && m !== cur.id;
     if (switched && !switchMap(m, { fit: false })) { toast('That map has been removed.'); return; }
@@ -1306,12 +1386,12 @@
     }).join('') || `<div class="empty">No places on ${esc(cur.name)} yet.<br>Right-click the map to drop a pin. Set “Leads to map” on a pin to link it to another map.</div>`;
     host.onclick = e => {
       const tb = e.target.closest('[data-travel]');
-      if (tb) { travel(tb.dataset.travel); document.body.classList.remove('sidebar-open'); return; }
+      if (tb) { travel(tb.dataset.travel); autoHideLeft(); return; }
       const li = e.target.closest('li[data-key]');
       if (!li) return;
       const [type, id] = li.dataset.key.split(':');
       go(type, id);
-      document.body.classList.remove('sidebar-open');
+      autoHideLeft();
     };
     markSelected();
   }
@@ -1361,7 +1441,7 @@
       if (!li) return;
       const [type, id] = li.dataset.key.split(':');
       go(type, id);
-      document.body.classList.remove('sidebar-open');
+      autoHideLeft();
     };
     markSelected();
   }
@@ -1639,7 +1719,8 @@
         });
       }
     }
-    const order = ['Maps', 'Places', 'Map icons', 'My notes', 'NPCs', 'Quests', 'Items'];
+    out.push(...(window.MonsterGuides?.search(q) || []));
+    const order = ['Maps', 'Guides', 'Places', 'Map icons', 'My notes', 'NPCs', 'Quests', 'Items'];
     const grouped = order.flatMap(g => out.filter(r => r.group === g).slice(0, g === 'NPCs' ? 12 : 8));
     return grouped;
   }
@@ -1647,7 +1728,7 @@
   function openUnsorted(name, mapId = cur.id) {
     if (mapId !== cur.id) switchMap(mapId);
     $('.tabs button[data-tab=zone]').click();
-    document.body.classList.add('sidebar-open');
+    setPanel({ leftOpen: true });
     const i = $('#unsorted-q');
     i.value = name; i.dispatchEvent(new Event('input'));
     i.scrollIntoView({ block: 'center' });
@@ -1825,7 +1906,8 @@
     renderPalette();
   });
   $('#btn-help').onclick = () => $('#help').showModal();
-  $('#btn-sidebar').onclick = () => document.body.classList.toggle('sidebar-open');
+  $('#btn-sidebar').onclick = () => { setView('map'); setPanel({ leftOpen: !state.ui.leftOpen }); };
+  $('#edit-done').onclick = () => setEditingPlaces(false);
 
   // ---------- links & toast ----------
   let hashLock = false;
@@ -1836,6 +1918,9 @@
   }
   function applyHash(hash = location.hash) {
     const q = new URLSearchParams(hash.slice(1));
+    const v = q.get('view');
+    if (v === 'leveling' || v === 'skills') { setView(v); window.MonsterGuides?.applyHash(q); return; }
+    if (view !== 'map') setView('map');
     const poi = q.get('poi'), note = q.get('note'), icon = q.get('icon'), m = q.get('map'), at = q.get('at');
     if (poi && POIS.some(p => p.id === poi)) return go('poi', poi);
     if (note && state.annotations.some(a => a.id === note)) return go('ann', note);
@@ -2011,6 +2096,35 @@
   buildIcons();
   buildPois();
   buildAnnotations();
+  // What the guides (guides.js) may use.
+  window.MonsterMap = {
+    esc, toast, setHash, setView, noteHtml,
+    wikiUrl: W.wikiUrl,
+    hasZone: name => !!mapOfPage(name),
+    openZone(name) { const m = mapOfPage(name); if (m) { setView('map'); switchMap(m.id); } return !!m; },
+    // Open a zone and, if one of its places is named in `text`, select that place.
+    openPlace(zone, text) {
+      const m = mapOfPage(zone);
+      if (!m) return false;
+      const t = ` ${String(text || '').toLowerCase()} `;
+      const hit = POIS.filter(p => p.map === m.id && p.cat !== 'connection' && p.cat !== 'hazard')
+        .map(p => ({ p, n: p.name.toLowerCase().replace(/^(the|to) /, '') }))
+        .filter(x => x.n.length > 4 && t.includes(x.n))
+        .sort((a, b) => b.n.length - a.n.length)[0];
+      setView('map');
+      if (hit) go('poi', hit.p.id); else switchMap(m.id);
+      return true;
+    },
+    // Painted trainer / vendor icons of one type across every map, e.g. 'ts_fishing'.
+    iconsOfType(type) {
+      return SEED_ICONS.map(i => iconRec(i.id)).filter(r => !r.deleted && r.type === type)
+        .map(r => ({ id: r.id, map: r.map, mapName: mapName(r.map), near: nearestPoi(r.x, r.y, r.map).poi?.name || '' }));
+    },
+    goIcon: id => go('icon', id),
+    hasIconType: type => !!ICON_TYPES[type],
+  };
+
+  applyPanels();
   switchMap(cur.id);
   applyHash(bootHash);
   try {
