@@ -55,7 +55,11 @@ for (const [zone, imgs] of Object.entries(info)) {
     }
     return p;
   });
-  maps.push({ id, name: zone, page: zone.replace(/ /g, '_'), width: 1600, height, source: 'wiki', images, pois });
+  // Zone type from the wiki's categories (plus pages that only say so in their text).
+  const text = crawl[zone]?.wikitext || '';
+  const type = /\[\[Category:Dungeons\]\]/.test(text) || ['Blind Midden'].includes(zone) ? 'dungeon'
+    : /\[\[Category:Cities\]\]/.test(text) ? 'city' : 'zone';
+  maps.push({ id, name: zone, page: zone.replace(/ /g, '_'), width: 1600, height, source: 'wiki', type, images, pois });
 }
 maps.sort((a, b) => a.name.localeCompare(b.name));
 

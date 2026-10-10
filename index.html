@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Night Harbor Atlas</title>
+  <title>Monster Map</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@geoman-io/leaflet-geoman-free@2.17.0/dist/leaflet-geoman.css">
-  <link rel="stylesheet" href="styles.css?v=12">
+  <link rel="stylesheet" href="styles.css?v=13">
 </head>
 <body>
   <header class="topbar">
@@ -17,7 +17,7 @@
     <div class="brand">
       <span class="brand-mark">◐</span>
       <div>
-        <h1>Night Harbor Atlas</h1>
+        <h1>Monster Map</h1>
         <p>Monsters &amp; Memories · Aêthoril</p>
       </div>
     </div>
@@ -110,11 +110,12 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <dialog id="help">
-    <h2>Using the atlas</h2>
+    <h2>Using Monster Map</h2>
     <ul>
       <li><b>Click a marker</b> to see what the wiki knows about that place: NPCs, quests and loot. Add your own notes to any place.</li>
       <li>Switch maps with the <b>map picker</b> at the top. Exits that lead to another mapped zone (like “To Shaded Dunes”) have a <b>Travel</b> button; double-clicking them works too. You arrive at the matching exit on the other side.</li>
       <li><b>＋ Add a map</b> (in the map picker) adds any zone. Type its wiki page name and the app finds the map image on the wiki and loads its NPCs, quests and items. Exits that name that zone link to it automatically.</li>
+      <li><b>Dungeon maps</b>: the numbers from the map key, the lettered connection boxes, traps and wing banners are all clickable. Double-click a connection box to jump to its other end. The <b>＋ Icon</b> palette has dungeon symbols for marking up other dungeons.</li>
       <li><b>Right-click the map</b> (long-press on touch) to drop a note pin right there.</li>
       <li>Use the <b>drawing tools</b> (top-right of the map) for pins, routes, areas and circles. Click any drawing to edit its title, category, colour and notes.</li>
       <li>The legend icons (banks, inns, tradeskills, notable NPCs, mob levels, respawn points) are live markers. Click one to rename it, change its type or level, add notes, or remove it.</li>
@@ -131,21 +132,22 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@geoman-io/leaflet-geoman-free@2.17.0/dist/leaflet-geoman.min.js"></script>
-  <script src="data/parse-wiki.js?v=12"></script>
-  <script src="data/atlas.js?v=12"></script>
-  <script src="data/icon-types.js?v=12"></script>
+  <script src="data/parse-wiki.js?v=13"></script>
+  <script src="data/atlas.js?v=13"></script>
+  <script src="data/icon-types.js?v=13"></script>
   <!-- One block per map: definition, painted-icon data, wiki snapshot -->
-  <script src="data/maps/night-harbor.js?v=12"></script>
-  <script src="data/maps/night-harbor-icons.js?v=12"></script>
-  <script src="data/maps/night-harbor-wiki.js?v=12"></script>
-  <script src="data/maps/night-harbor-labels.js?v=12"></script>
-  <script src="data/maps/shaded-dunes.js?v=12"></script>
-  <script src="data/maps/shaded-dunes-icons.js?v=12"></script>
-  <script src="data/maps/shaded-dunes-wiki.js?v=12"></script>
-  <script src="data/maps/shaded-dunes-labels.js?v=12"></script>
+  <script src="data/maps/night-harbor.js?v=13"></script>
+  <script src="data/maps/night-harbor-icons.js?v=13"></script>
+  <script src="data/maps/night-harbor-wiki.js?v=13"></script>
+  <script src="data/maps/night-harbor-labels.js?v=13"></script>
+  <script src="data/maps/shaded-dunes.js?v=13"></script>
+  <script src="data/maps/shaded-dunes-icons.js?v=13"></script>
+  <script src="data/maps/shaded-dunes-wiki.js?v=13"></script>
+  <script src="data/maps/shaded-dunes-labels.js?v=13"></script>
   <!-- Zones crawled from the wiki (work/crawl.js, work/gen_wiki_maps.js) -->
-  <script src="data/maps/wiki-zones.js?v=12"></script>
-  <script src="data/maps/wiki-zones-wiki.js?v=12"></script>
-  <script src="app.js?v=12"></script>
+  <script src="data/maps/wiki-zones.js?v=13"></script>
+  <script src="data/maps/dungeons.js?v=13"></script>
+  <script src="data/maps/wiki-zones-wiki.js?v=13"></script>
+  <script src="app.js?v=14"></script>
 </body>
 </html>

@@ -10,6 +10,7 @@ window.NH_ICON_GROUPS = {
   notable:     { label: 'Notable & friendly NPCs', color: '#00a8f0' },
   mobs:        { label: 'Mobs by level',       color: '#5ee8d0' },
   respawn:     { label: 'Respawn points',      color: '#9aa0aa' },
+  dungeon:     { label: 'Dungeon',             color: '#4fc3f7' },
 };
 
 window.NH_LEVEL_COLORS = {
@@ -47,6 +48,16 @@ window.NH_ICON_LETTERS = {
     ashira:   { label: 'Ashira',   group: 'mobs', kind: 'shape', scale: 1.05, colorable: true, wiki: ['ashira'] },
     giant:    { label: 'Giants',   group: 'mobs', kind: 'shape', scale: 0.9,  colorable: true, wiki: ['sand giant', 'Maleq'] },
     star:     { label: 'Respawn point', group: 'respawn', kind: 'shape', scale: 0.72 },
+
+    // Dungeon symbols, drawn in the style of the dungeon maps. `lettered` icons show the pin's label instead of `glyph`.
+    // Two "Map connection" pins with the same label on one map are the two ends of a passage (double-click to follow).
+    d_num:    { label: 'Numbered spot',     group: 'dungeon', kind: 'glyph', style: 'num',    glyph: '1', lettered: true },
+    d_conn:   { label: 'Map connection',    group: 'dungeon', kind: 'glyph', style: 'conn',   glyph: 'A', lettered: true },
+    d_trap:   { label: 'Trap',              group: 'dungeon', kind: 'glyph', style: 'trap',   glyph: '✕' },
+    d_secret: { label: 'Secret / illusory wall', group: 'dungeon', kind: 'glyph', style: 'secret', glyph: '┅' },
+    d_stairs: { label: 'Stairs / ladder',   group: 'dungeon', kind: 'glyph', style: 'tile',   glyph: '⇅' },
+    d_door:   { label: 'Locked door',       group: 'dungeon', kind: 'glyph', style: 'tile',   glyph: '⚿' },
+    d_chest:  { label: 'Chest / loot',      group: 'dungeon', kind: 'glyph', style: 'tile',   glyph: '▣' },
 
     skills:  { label: 'Skill trainer / supply vendor', group: 'tradeskills', kind: 'badge' },
     masonry: { label: 'Masonry', group: 'tradeskills', kind: 'badge', wiki: ['Mason'] },

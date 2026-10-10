@@ -1,4 +1,4 @@
-# Night Harbor Atlas
+# Monster Map
 
 An interactive map of Night Harbor (Monsters & Memories) that you can annotate. It is a static single-page app with no build step.
 
@@ -46,6 +46,18 @@ The map art is by Maggot and other Monsters & Memories wiki contributors. Keep t
 Four zones have no map on the wiki yet (Glinting Hollow, Night Harbor Sewers, The Hidden Grotto, Great Cavern Sea). Their exits show "no map yet".
 
 To refresh, run these from `work/`: `node crawl.js`, then review `wiki_maps.json`, then `node download_maps.js`, `python wiki_maps.py` and `node gen_wiki_maps.js`.
+
+## Dungeon maps
+
+Maps in the wiki's Dungeons category are grouped under **Dungeons** in the map picker. A dungeon map can have its painted marks made clickable, described in `data/maps/dungeons.js`:
+
+- **Named mobs:** the numbers from the map key, each linked to its wiki NPC.
+- **Map connections:** lettered boxes that join two parts of the map. Double-click one to jump to its other end.
+- **Traps** and **wing banners.**
+
+The Tomb of the Last Wyrmsbane is set up this way. To do another dungeon, add it to `DUNGEONS` in `work/dungeons.py` with rough positions read off the map, put the source image in `work/tmp/`, and run `python dungeons.py`. The script snaps each position to the exact painted mark and writes `dungeons.js`.
+
+Without any of that, the **＋ Icon** palette has dungeon symbols (numbered spot, map connection, trap, secret wall, stairs, locked door, chest). Two "Map connection" pins with the same label on one map act as the two ends of a passage.
 
 ## Files
 

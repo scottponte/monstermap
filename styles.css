@@ -448,3 +448,15 @@ dialog form { text-align: right; }
 .mi-emoji { display: grid; place-items: center; }
 .mi-emoji span { font: 700 calc(var(--mi, 24px) * var(--k, 1) * .58) / 1 var(--font); color: #16130b; }
 .mi-c-plain.mi-emoji span { font-size: calc(var(--mi, 24px) * var(--k, 1) * .85); color: #fff; text-shadow: 0 0 3px #000, 0 0 3px #000; }
+
+/* ---------- Dungeon maps ---------- */
+.mark-hit.noted { stroke-opacity: .75; stroke-dasharray: 3 3; }
+.mi-glyph { display: grid; place-items: center; }
+.mi-glyph span { font: 700 calc(var(--mi, 24px) * var(--k, 1) * .56) / 1 var(--font); }
+.mi-g-num { border-radius: 50%; background: rgba(12, 12, 14, .88); border: max(1.5px, calc(var(--mi, 24px) * .06)) solid #ffd84a; color: #fff; }
+.mi-g-conn { background: rgba(12, 12, 14, .88); border: max(1.5px, calc(var(--mi, 24px) * .07)) dashed #fff; color: #fff; }
+.mi-g-trap { background: rgba(12, 12, 14, .6); border: max(1.5px, calc(var(--mi, 24px) * .08)) solid #ff2b2b; color: #ff2b2b; }
+.mi-g-trap span { font-size: calc(var(--mi, 24px) * var(--k, 1) * .8); }
+.mi-g-secret { background: none; color: #ff2b2b; }
+.mi-g-secret span { font-size: calc(var(--mi, 24px) * var(--k, 1) * 1.1); text-shadow: 0 0 2px #000; }
+.mi-g-tile { background: rgba(12, 12, 14, .88); border: max(1.5px, calc(var(--mi, 24px) * .06)) solid #cfd6dc; border-radius: 3px; color: #fff; }

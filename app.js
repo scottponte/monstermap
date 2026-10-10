@@ -1,4 +1,4 @@
-/* Night Harbor Atlas – interactive map + annotations for Monsters & Memories. */
+/* Monster Map – interactive maps + annotations for Monsters & Memories. */
 (() => {
   'use strict';
 
@@ -124,6 +124,15 @@
     MAP_BY_ID = Object.fromEntries(MAPS.map(m => [m.id, m]));
   }
   refreshMaps();
+  // Hand-made additions to generated maps (data/maps/dungeons.js): extra places, and fields patched onto existing ones.
+  for (const m of BUILTIN_MAPS) {
+    const e = (window.NH_MAP_EXTRAS || {})[m.id];
+    if (!e || m._extrasApplied) continue;
+    m._extrasApplied = true;
+    if (e.type) m.type = e.type;
+    if (e.credit) m.images.filter(i => /^(web|wiki-0)$/.test(i.id)).forEach(i => { i.credit = `${e.credit} · ${i.credit}`; });
+    m.pois = [...m.pois.map(p => e.patch?.[p.id] ? { ...p, ...e.patch[p.id] } : p), ...(e.pois || [])];
+  }
   const POIS = BUILTIN_MAPS.flatMap(m => m.pois.map(p => ({ ...p, map: m.id })));
   const SEED_ICONS = BUILTIN_MAPS.flatMap(m => (ICONS_BY_MAP[m.id] || []).map(i => ({ ...i, map: m.id })));
   let cur = MAP_BY_ID[state.mapId] || MAPS[0];
@@ -328,7 +337,7 @@
     mapReady = true;
     if (!selected) viewHash();
     updateIconScale();
-    document.title = `${cur.name} · Night Harbor Atlas`;
+    document.title = `${cur.name} · Monster Map`;
     renderMapPicker();
     renderAll();
     return true;
@@ -386,11 +395,17 @@
   const poiMarkers = {};
   let editingPlaces = false;
 
-  const bannerOf = p => LABELS_BY_MAP[p.map]?.[p.id] || null;
+  // The painted mark a place sits on: a name banner, or (dungeons) a number, letter box or trap symbol.
+  const bannerOf = p => p.box || LABELS_BY_MAP[p.map]?.[p.id] || null;
+  // Small painted marks are the whole click target; they get no marker of their own.
+  const hitOnly = p => !!(p.box && CATS[p.cat].hitOnly);
+  // Other places sharing this one's `pair` on the same map (the far end of a map connection).
+  const partnersOf = p => p.pair ? POIS.filter(q => q.map === p.map && q.pair === p.pair && q.id !== p.id) : [];
   function poiPos(p) {
     const o = state.poiOverrides[p.id];
-    if (o) return [o.y, o.x];
+    if (o && !hitOnly(p)) return [o.y, o.x];
     const b = bannerOf(p);
+    if (b && hitOnly(p)) return [(b[1] + b[3]) / 2, (b[0] + b[2]) / 2];
     if (b) return [(b[1] + b[3]) / 2, b[2]];
     return Number.isFinite(p.x) && Number.isFinite(p.y) ? [p.y, p.x] : null; // null: not placed on the map yet
   }
@@ -401,16 +416,43 @@
     POIS.forEach(makePoiMarker);
   }
 
+  // Double-click: travel through an exit, or follow a map connection to its other end.
+  function followPoi(p) {
+    const d = destOf(p);
+    if (d) return travel(d.id);
+    const others = partnersOf(p);
+    if (others.length) go('poi', others[0].id);
+  }
+
   function makePoiMarker(p) {
-    if (poiMarkers[p.id] || !placed(p)) return;
+    if (poiMarkers[p.id] || bannerRects[p.id] || !placed(p)) return;
+    const tip = () => {
+      const d = destOf(p);
+      return (p.label && p.cat === 'named' ? `<b>${esc(p.label)}</b> · ` : '') + esc(p.name)
+        + (d ? ` <span class="tip-go">→ ${esc(d.name)} · double-click to travel</span>` : '')
+        + (partnersOf(p).length ? ' <span class="tip-go">double-click to follow</span>' : '');
+    };
+    if (hitOnly(p)) {
+      const b = bannerOf(p);
+      const r = L.rectangle([[b[1], b[0]], [b[3], b[2]]], {
+        className: 'banner-hit mark-hit', color: CATS[p.cat].color, weight: 2, opacity: 0, fillColor: CATS[p.cat].color, fillOpacity: 0, pmIgnore: true,
+      });
+      r.bindTooltip(tip, { className: 'nh-tip', direction: 'top', offset: [0, -4] });
+      r.on('click', e => { L.DomEvent.stopPropagation(e); select('poi', p.id); });
+      r.on('dblclick', e => { L.DomEvent.stopPropagation(e); followPoi(p); });
+      r.on('add', () => {
+        r._path?.classList.toggle('selected', !!isSelected('poi', p.id));
+        r._path?.classList.toggle('noted', !!(state.poiNotes[p.id] || '').trim());
+      });
+      bannerRects[p.id] = r;
+      setOf(p.map).poi[p.cat].addLayer(r);
+      return;
+    }
     {
       const m = L.marker(poiPos(p), { icon: poiIcon(p), pmIgnore: true, riseOnHover: true, keyboard: true, title: '' });
-      m.bindTooltip(() => {
-        const d = destOf(p);
-        return esc(p.name) + (d ? ` <span class="tip-go">→ ${esc(d.name)} · double-click to travel</span>` : '');
-      }, { className: 'nh-tip', direction: 'top', offset: [0, -14] });
+      m.bindTooltip(tip, { className: 'nh-tip', direction: 'top', offset: [0, -14] });
       m.on('click', () => select('poi', p.id));
-      m.on('dblclick', () => { const d = destOf(p); if (d) travel(d.id); });
+      m.on('dblclick', () => followPoi(p));
       m.on('dragend', () => {
         const ll = m.getLatLng();
         state.poiOverrides[p.id] = { x: round(ll.lng), y: round(ll.lat) };
@@ -428,7 +470,7 @@
         });
         r.bindTooltip(m.getTooltip()._content, { className: 'nh-tip', direction: 'top', offset: [0, -4] });
         r.on('click', e => { L.DomEvent.stopPropagation(e); select('poi', p.id); });
-        r.on('dblclick', e => { L.DomEvent.stopPropagation(e); const d = destOf(p); if (d) travel(d.id); });
+        r.on('dblclick', e => { L.DomEvent.stopPropagation(e); followPoi(p); });
         r.on('add', () => { if (isSelected('poi', p.id)) r._path?.classList.add('selected'); });
         bannerRects[p.id] = r;
         setOf(p.map).poi[p.cat].addLayer(r);
@@ -440,7 +482,7 @@
     for (const p of POIS) {
       const m = poiMarkers[p.id];
       if (m && !placed(p)) { m.remove(); m._grp?.removeLayer(m); delete poiMarkers[p.id]; continue; }
-      if (!m) { makePoiMarker(p); continue; }
+      if (!m) { makePoiMarker(p); continue; } // (no-op for places that are only a painted mark)
       m.setLatLng(poiPos(p));
       m.setIcon(poiIcon(p));
     }
@@ -449,6 +491,7 @@
 
   function refreshPoiIcon(id) {
     const p = POIS.find(x => x.id === id);
+    bannerRects[id]?._path?.classList.toggle('noted', !!(state.poiNotes[id] || '').trim());
     if (!poiMarkers[id]) return;
     poiMarkers[id].setIcon(poiIcon(p));
     markSelected();
@@ -495,6 +538,9 @@
     const k = ICON_TYPES[type] ? type : 'skills';
     const t = ICON_TYPES[k];
     const scale = t.scale || 1;
+    if (t.kind === 'glyph') {
+      return `<div class="mi-wrap mi-glyph mi-g-${t.style}"><span>${esc(letter || t.glyph)}</span></div>`;
+    }
     if (t.kind === 'custom') {
       const c = t.custom;
       const cls = `mi-wrap mi-custom mi-c-${c.shape || 'round'}`;
@@ -647,7 +693,12 @@
       layer.bindTooltip(esc(rec.title || 'Untitled') + (d ? ` <span class="tip-go">→ ${esc(d.name)} · double-click to travel</span>` : ''),
         { className: 'nh-tip', direction: 'top', sticky: rec.kind !== 'marker' });
     }
-    if (rec.kind === 'marker') layer.on('dblclick', () => { const d = destOf({ link: rec.link }); if (d) travel(d.id); });
+    if (rec.kind === 'marker') layer.on('dblclick', () => {
+      const d = destOf({ link: rec.link });
+      if (d) return travel(d.id);
+      const other = pinPartner(rec);
+      if (other) go('ann', other.id);
+    });
     layer.on('click', e => {
       L.DomEvent.stopPropagation(e);
       if (map.pm.globalRemovalModeEnabled()) return;
@@ -658,6 +709,10 @@
     layer.on('pm:dragend', sync);
     return layer;
   }
+
+  const pinPartner = rec => rec.iconType === 'd_conn' && rec.iconLetter
+    ? state.annotations.find(a => a.id !== rec.id && annMap(a) === annMap(rec) && a.iconType === 'd_conn' && a.iconLetter === rec.iconLetter) || null
+    : null;
 
   function geoOf(kind, layer) {
     const pt = ll => [round(ll.lat), round(ll.lng)];
@@ -864,7 +919,7 @@
   function go(type, id, opts) {
     const m = mapOfItem(type, id);
     const switched = !!m && m !== cur.id;
-    if (switched && !switchMap(m, { fit: false })) { toast('That map is no longer in the atlas.'); return; }
+    if (switched && !switchMap(m, { fit: false })) { toast('That map has been removed.'); return; }
     select(type, id, opts);
     flyTo(type, id, { instant: switched });
   }
@@ -884,9 +939,11 @@
     const [x, y] = [pos[1], pos[0]];
     const dest = destOf(poi);
     const leads = poi.toPage || poi.toMap;
+    const partners = partnersOf(poi);
     body.innerHTML = `
-      ${drawerHead(c.color, c.label, poi.name)}
+      ${drawerHead(c.color, c.label, (poi.label && poi.cat === 'named' ? poi.label + ' · ' : '') + poi.name)}
       ${poi.desc ? `<p class="desc">${esc(poi.desc)}</p>` : ''}
+      ${partners.map(q => `<button class="btn primary travel-btn" data-partner="${q.id}">Follow connection ${esc(poi.pair)} to its other end →</button>`).join('')}
       ${leads ? (dest
         ? `<button class="btn primary travel-btn" data-act="travel">Travel to ${esc(dest.name)} →</button>`
         : `<div class="travel-missing">No map for <b>${esc(String(poi.toPage).replace(/_/g, ' '))}</b> yet.
@@ -935,6 +992,8 @@
     }
 
     body.onclick = e => {
+      const pb = e.target.closest('[data-partner]');
+      if (pb) return go('poi', pb.dataset.partner);
       const act = e.target.closest('[data-act]')?.dataset.act;
       if (act === 'close') closeDrawer();
       if (act === 'copy') copyLink();
@@ -971,7 +1030,7 @@
       <div class="row icon-pick">
         <label class="field" style="flex:1;margin:0"><span>Icon</span><select id="i-type">${iconTypeOptions(r.type)}</select></label>
         ${t.colorable ? `<label class="field" style="margin:0"><span>Level</span><select id="i-color">${levelOptions(r.color || 'blue', r.map)}</select></label>` : ''}
-        ${r.type === 'humanoid' ? `<label class="field" style="width:70px;margin:0"><span>Letter</span><input type="text" id="i-letter" maxlength="5" value="${esc(r.letter || '')}"></label>` : ''}
+        ${r.type === 'humanoid' || t.lettered ? `<label class="field" style="width:70px;margin:0"><span>${t.lettered ? 'Label' : 'Letter'}</span><input type="text" id="i-letter" maxlength="5" value="${esc(r.letter || '')}"></label>` : ''}
       </div>
       <label class="field"><span>My notes</span>
         <textarea id="i-note" placeholder="Who's here, opening hours, what they sell… [[Wiki Page]] links work.">${esc(r.note || '')}</textarea>
@@ -1065,10 +1124,11 @@
             <select id="a-link"><option value="">— nowhere —</option>${MAPS.filter(m => m.id !== annMap(rec)).map(m => `<option value="${m.id}" ${m.id === rec.link ? 'selected' : ''}>${esc(m.name)}</option>`).join('')}</select>
           </label>
           ${destOf({ link: rec.link }) ? `<button class="btn primary travel-btn" data-act="travel">Travel to ${esc(mapName(rec.link))} →</button>` : ''}
+          ${pinPartner(rec) ? `<button class="btn primary travel-btn" data-act="partner">Follow connection ${esc(rec.iconLetter)} to its other end →</button>` : ''}
           ${rec.display === 'icon' ? `<div class="row icon-pick">
             <label class="field" style="flex:1;margin:0"><span>Icon</span><select id="a-icontype">${iconTypeOptions(rec.iconType || 'skills')}</select></label>
             ${ICON_TYPES[rec.iconType]?.colorable ? `<label class="field" style="margin:0"><span>Level</span><select id="a-iconcolor">${levelOptions(rec.iconColor || 'blue', annMap(rec))}</select></label>` : ''}
-            ${rec.iconType === 'humanoid' ? `<label class="field" style="width:70px;margin:0"><span>Letter</span><input type="text" id="a-iconletter" maxlength="5" value="${esc(rec.iconLetter || '')}"></label>` : ''}
+            ${rec.iconType === 'humanoid' || ICON_TYPES[rec.iconType]?.lettered ? `<label class="field" style="width:70px;margin:0"><span>${ICON_TYPES[rec.iconType]?.lettered ? 'Label' : 'Letter'}</span><input type="text" id="a-iconletter" maxlength="5" value="${esc(rec.iconLetter || '')}"></label>` : ''}
           </div>` : ''}`
         : `<label class="check" style="margin-top:8px"><input type="checkbox" id="a-showlabel" ${rec.showLabel ? 'checked' : ''}> Show title on the map</label>
            ${rec.kind === 'polyline' ? `<label class="check"><input type="checkbox" id="a-dashed" ${rec.dashed ? 'checked' : ''}> Dashed line</label>` : ''}`}
@@ -1117,6 +1177,7 @@
       if (act === 'close') closeDrawer();
       if (act === 'zoom') flyTo('ann', rec.id);
       if (act === 'travel') travel(rec.link);
+      if (act === 'partner') go('ann', pinPartner(rec).id);
       if (act === 'copy') copyLink();
       if (act === 'delete') deleteAnnotation(rec.id);
     };
@@ -1196,7 +1257,8 @@
     const here = POIS.filter(p => p.map === cur.id);
     const links = state.annotations.filter(a => annMap(a) === cur.id && a.kind === 'marker' && destOf({ link: a.link }));
     host.innerHTML = Object.entries(CATS).map(([k, c]) => {
-      const items = here.filter(p => p.cat === k).sort((a, b) => a.name.localeCompare(b.name));
+      const byLabel = (a, b) => (a.label || '').localeCompare(b.label || '', undefined, { numeric: true }) || a.name.localeCompare(b.name);
+      const items = here.filter(p => p.cat === k).sort(c.hitOnly ? byLabel : (a, b) => a.name.localeCompare(b.name));
       const extra = k === 'travel' ? links : [];
       if (!items.length && !extra.length) return '';
       return `<div class="group-title">${esc(c.label)}</div><ul class="list">${items.map(p => {
@@ -1204,7 +1266,7 @@
         const note = state.poiNotes[p.id] ? ' · ✎ note' : '';
         const d = destOf(p);
         const sub = (d ? `→ ${esc(d.name)}` : p.toPage ? 'no map yet' : n ? `${n} NPCs` : esc(p.desc ? p.desc.split('.')[0] : '')) + (placed(p) ? '' : ' · not placed');
-        return `<li data-key="poi:${p.id}"><span class="dot" style="color:${c.color}">${c.glyph}</span>
+        return `<li data-key="poi:${p.id}"><span class="dot" style="color:${c.color}">${esc(p.label || c.glyph)}</span>
           <span class="name">${esc(p.name)}<small>${sub}${note}</small></span>${d ? `<button class="btn small go-btn" data-travel="${d.id}" title="Travel to ${esc(d.name)}">Go →</button>` : ''}</li>`;
       }).join('')}${extra.map(a => `<li data-key="ann:${a.id}"><span class="dot" style="color:${colorOf(a)}">➜</span>
           <span class="name">${esc(a.title || 'Untitled')}<small>your pin → ${esc(mapName(a.link))}</small></span><button class="btn small go-btn" data-travel="${a.link}">Go →</button></li>`).join('')}</ul>`;
@@ -1372,10 +1434,11 @@
       ${myIcons.length && cur.images.find(i => i.id === imageId && !i.clean) ? '<p class="meta">This image still has the icons painted in, so they show twice. Turn off the Map icons layers below, or pick a clean map.</p>' : ''}
       <h3>Map icons <button class="btn small" data-all="icon" style="float:right">All / none</button></h3>
       ${Object.entries(ICON_GROUPS).map(([k, c]) => [k, c, myIcons.filter(r => !r.deleted && iconGroupOf(r) === k).length])
-        .filter(([k, , n]) => k !== 'custom' || n).map(([k, c, n]) => row('icon:' + k, c, n)).join('')}
+        .filter(([k, , n]) => n || !['custom', 'dungeon'].includes(k)).map(([k, c, n]) => row('icon:' + k, c, n)).join('')}
       ${removedIcons().length ? `<button class="btn small" id="restore-icons" style="margin-top:6px">Restore removed icons (${removedIcons().length})</button>` : ''}
       <h3>Places <button class="btn small" data-all="poi" style="float:right">All / none</button></h3>
-      ${Object.entries(CATS).map(([k, c]) => row('poi:' + k, c, POIS.filter(p => p.map === cur.id && p.cat === k).length)).join('')}
+      ${Object.entries(CATS).map(([k, c]) => [k, c, POIS.filter(p => p.map === cur.id && p.cat === k).length])
+        .filter(([, c, n]) => n || !c.dungeon).map(([k, c, n]) => row('poi:' + k, c, n)).join('')}
       <h3>My notes <button class="btn small" data-all="ann" style="float:right">All / none</button></h3>
       ${Object.entries(NOTE_CATS).map(([k, c]) => row('ann:' + k, c, state.annotations.filter(a => annMap(a) === cur.id && catOf(a) === k).length)).join('')}
       <p class="meta">Layer switches apply to every map.</p>
@@ -1443,7 +1506,7 @@
     $('#remove-map', host)?.addEventListener('click', () => {
       const id = cur.id;
       const pins = state.annotations.filter(a => annMap(a) === id);
-      if (!confirm(`Remove the ${cur.name} map from the atlas?${pins.length ? ` Its ${pins.length} pin(s)/drawing(s) are deleted too.` : ''}`)) return;
+      if (!confirm(`Remove the ${cur.name} map?${pins.length ? ` Its ${pins.length} pin(s)/drawing(s) are deleted too.` : ''}`)) return;
       pins.forEach(a => { const l = annLayers[a.id]; if (l) { l.remove(); l._grp?.removeLayer(l); delete annLayers[a.id]; } });
       state.annotations = state.annotations.filter(a => annMap(a) !== id);
       state.annotations.forEach(a => { if (a.link === id) { a.link = ''; renderAnn(a); } });
@@ -1603,7 +1666,7 @@
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = `night-harbor-notes-${new Date().toISOString().slice(0, 10)}.json`;
+    a.download = `monster-map-notes-${new Date().toISOString().slice(0, 10)}.json`;
     a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   }
@@ -1611,7 +1674,7 @@
   async function importJson(file) {
     let data;
     try { data = JSON.parse(await file.text()); } catch { toast('That file isn’t valid JSON.'); return; }
-    if (!data || !Array.isArray(data.annotations)) { toast('That doesn’t look like a Night Harbor Atlas export.'); return; }
+    if (!data || !Array.isArray(data.annotations)) { toast('That doesn’t look like a Monster Map export.'); return; }
     const replace = state.annotations.length || Object.keys(state.poiNotes).length
       ? confirm('Replace your current notes with the imported ones?\n\nOK = replace · Cancel = merge (keeps both, imported wins on conflicts)')
       : true;
@@ -1687,7 +1750,7 @@
     if (!b) return;
     const k = b.dataset.icon, t = ICON_TYPES[k];
     $('#palette').close();
-    startPlacing({ display: 'icon', iconType: k, iconColor: t.colorable ? paletteLevel : '', title: t.label }, t.label);
+    startPlacing({ display: 'icon', iconType: k, iconColor: t.colorable ? paletteLevel : '', iconLetter: t.lettered ? t.glyph : '', title: t.label }, t.label);
   });
   $('#btn-icons').onclick = () => { renderPalette(); $('#palette-status').textContent = ''; $('#palette').showModal(); };
   $('#palette-close').onclick = () => $('#palette').close();
@@ -1775,7 +1838,8 @@
     const opt = m => `<option value="${m.id}" ${m.id === cur.id ? 'selected' : ''}>${esc(m.name)}</option>`;
     const groups = [
       ['Annotated maps', MAPS.filter(m => !m.custom && m.source !== 'wiki')],
-      ['Wiki maps', MAPS.filter(m => m.source === 'wiki')],
+      ['Zones & cities', MAPS.filter(m => m.source === 'wiki' && m.type !== 'dungeon')],
+      ['Dungeons', MAPS.filter(m => m.source === 'wiki' && m.type === 'dungeon')],
       ['Your maps', MAPS.filter(m => m.custom)],
     ].filter(([, l]) => l.length);
     sel.innerHTML = `${groups.map(([label, l]) => `<optgroup label="${label}">${l.map(opt).join('')}</optgroup>`).join('')}

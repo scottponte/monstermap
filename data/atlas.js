@@ -31,5 +31,33 @@ window.NH_CATEGORIES = {
     label: "Hunting & dungeons",
     color: "#d9534f",
     glyph: "⚔"
+  },
+  // Dungeon maps. hitOnly: the painted mark (number, letter box, symbol) is the place; no marker covers it.
+  named: {
+    label: "Named mobs (map key)",
+    color: "#ffd84a",
+    glyph: "★",
+    hitOnly: true,
+    dungeon: true
+  },
+  connection: {
+    label: "Map connections",
+    color: "#4fc3f7",
+    glyph: "⬚",
+    hitOnly: true,
+    dungeon: true
+  },
+  hazard: {
+    label: "Traps & hazards",
+    color: "#ff4d4d",
+    glyph: "☒",
+    hitOnly: true,
+    dungeon: true
+  },
+  section: {
+    label: "Wings & sections",
+    color: "#7ed957",
+    glyph: "▤",
+    dungeon: true
   }
 };
