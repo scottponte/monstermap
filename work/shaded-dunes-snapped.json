@@ -1,0 +1,221 @@
+[
+ {
+  "id": "sd-icon-001",
+  "type": "ashira",
+  "x": 839.4,
+  "y": 703.5,
+  "size": 112,
+  "color": "yellow"
+ },
+ {
+  "id": "sd-icon-002",
+  "type": "ashira",
+  "x": 1192.9,
+  "y": 1208.4,
+  "size": 79,
+  "color": "yellow"
+ },
+ {
+  "id": "sd-icon-003",
+  "type": "ashira",
+  "x": 4785.4,
+  "y": 940.6,
+  "size": 74,
+  "color": "green"
+ },
+ {
+  "id": "sd-icon-004",
+  "type": "ashira",
+  "x": 5226.5,
+  "y": 982.3,
+  "size": 74,
+  "color": "green"
+ },
+ {
+  "id": "sd-icon-005",
+  "type": "ring",
+  "x": 5322.6,
+  "y": 1246.6,
+  "size": 71,
+  "color": "green"
+ },
+ {
+  "id": "sd-icon-006",
+  "type": "ring",
+  "x": 5208.1,
+  "y": 1699.4,
+  "size": 71,
+  "color": "green"
+ },
+ {
+  "id": "sd-icon-007",
+  "type": "ring",
+  "x": 5501.3,
+  "y": 2452.3,
+  "size": 79,
+  "color": "green"
+ },
+ {
+  "id": "sd-icon-008",
+  "type": "humanoid",
+  "x": 1609.5,
+  "y": 1765.5,
+  "size": 68,
+  "color": "blue"
+ },
+ {
+  "id": "sd-icon-009",
+  "type": "ring",
+  "x": 2310.7,
+  "y": 1676.8,
+  "size": 77,
+  "color": "orange"
+ },
+ {
+  "id": "sd-icon-010",
+  "type": "ring",
+  "x": 3647.0,
+  "y": 1699.0,
+  "size": 71,
+  "color": "yellow"
+ },
+ {
+  "id": "sd-icon-011",
+  "type": "skull",
+  "x": 2256.2,
+  "y": 2208.7,
+  "size": 67,
+  "color": "orange"
+ },
+ {
+  "id": "sd-icon-012",
+  "type": "skull",
+  "x": 3499.9,
+  "y": 1020.6,
+  "size": 63,
+  "color": "orange",
+  "note": "At night (moon): undead or cultists."
+ },
+ {
+  "id": "sd-icon-013",
+  "type": "humanoid",
+  "x": 3616.4,
+  "y": 1020.8,
+  "size": 69,
+  "color": "orange",
+  "note": "At night (moon): undead or cultists."
+ },
+ {
+  "id": "sd-icon-014",
+  "type": "humanoid",
+  "x": 3509.6,
+  "y": 1163.7,
+  "size": 71,
+  "color": "blue",
+  "note": "By day (sun): researchers, incl. Head Researcher Aashir."
+ },
+ {
+  "id": "sd-icon-015",
+  "type": "ashira",
+  "x": 4250.7,
+  "y": 2377.0,
+  "size": 68,
+  "color": "yellow"
+ },
+ {
+  "id": "sd-icon-016",
+  "type": "humanoid",
+  "x": 4764.4,
+  "y": 2360.1,
+  "size": 66,
+  "color": "orange"
+ },
+ {
+  "id": "sd-icon-017",
+  "type": "humanoid",
+  "x": 4938.3,
+  "y": 2276.0,
+  "size": 66,
+  "color": "orange"
+ },
+ {
+  "id": "sd-icon-018",
+  "type": "humanoid",
+  "x": 5375.3,
+  "y": 2921.1,
+  "size": 63,
+  "color": "blue"
+ },
+ {
+  "id": "sd-icon-019",
+  "type": "skull",
+  "x": 940.0,
+  "y": 2441.0,
+  "size": 68,
+  "color": "yellow"
+ },
+ {
+  "id": "sd-icon-020",
+  "type": "humanoid",
+  "x": 1380.1,
+  "y": 2983.0,
+  "size": 62,
+  "color": "yellow"
+ },
+ {
+  "id": "sd-icon-021",
+  "type": "humanoid",
+  "x": 1882.6,
+  "y": 2622.9,
+  "size": 68,
+  "color": "blue"
+ },
+ {
+  "id": "sd-icon-022",
+  "type": "ring",
+  "x": 1583.4,
+  "y": 2815.3,
+  "size": 62,
+  "color": "yellow"
+ },
+ {
+  "id": "sd-icon-023",
+  "type": "ring",
+  "x": 2266.5,
+  "y": 3000.1,
+  "size": 72,
+  "color": "yellow"
+ },
+ {
+  "id": "sd-icon-024",
+  "type": "giant",
+  "x": 2688.5,
+  "y": 2678.6,
+  "size": 102,
+  "color": "red"
+ },
+ {
+  "id": "sd-icon-025",
+  "type": "skull",
+  "x": 3199.4,
+  "y": 2382.1,
+  "size": 68,
+  "color": "yellow"
+ },
+ {
+  "id": "sd-icon-026",
+  "type": "humanoid",
+  "x": 3130.2,
+  "y": 2521.5,
+  "size": 39,
+  "color": "blue"
+ },
+ {
+  "id": "sd-icon-027",
+  "type": "ring",
+  "x": 4021.0,
+  "y": 3002.7,
+  "size": 75,
+  "color": "yellow"
+ }
+]

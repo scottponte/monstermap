@@ -1,0 +1,432 @@
+{
+ "Ail'Vorith": [
+  {
+   "file": "Ailvorith foreignquarters2.jpg",
+   "local": "wm/orig/Ailvorith_foreignquarters2.jpg",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/e/ec/Ailvorith_foreignquarters2.jpg",
+   "w": 1000,
+   "h": 800,
+   "web": "assets/maps/ailvorith-1.jpg",
+   "webSize": [
+    1000,
+    800
+   ]
+  }
+ ],
+ "Ancient Crypt": [
+  {
+   "file": "Ancient Crypt Map.png",
+   "local": "wm/orig/Ancient_Crypt_Map.png",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/a/ae/Ancient_Crypt_Map.png",
+   "w": 8400,
+   "h": 9300,
+   "web": "assets/maps/ancient-crypt-1.jpg",
+   "webSize": [
+    4096,
+    4535
+   ]
+  }
+ ],
+ "Blacktide Bay": [
+  {
+   "file": "Blacktide Bay.jpg",
+   "local": "wm/orig/Blacktide_Bay.jpg",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/0/09/Blacktide_Bay.jpg",
+   "w": 5400,
+   "h": 7200,
+   "web": "assets/maps/blacktide-bay-1.jpg",
+   "webSize": [
+    4096,
+    5461
+   ]
+  }
+ ],
+ "Blind Midden": [
+  {
+   "file": "Blind Midden - Ground Floor.png",
+   "local": "wm/orig/Blind_Midden___Ground_Floor.png",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/7/71/Blind_Midden_-_Ground_Floor.png",
+   "w": 1097,
+   "h": 840,
+   "web": "assets/maps/blind-midden-1.jpg",
+   "webSize": [
+    1097,
+    840
+   ]
+  }
+ ],
+ "Caves of Irem": [
+  {
+   "file": "Irem.png",
+   "local": "wm/orig/Irem.png",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/2/27/Irem.png",
+   "w": 3440,
+   "h": 2087,
+   "web": "assets/maps/caves-of-irem-1.jpg",
+   "webSize": [
+    3440,
+    2087
+   ]
+  },
+  {
+   "file": "Caves of Irem1stDraft.jpg",
+   "local": "wm/orig/Caves_of_Irem1stDraft.jpg",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/f/fc/Caves_of_Irem1stDraft.jpg",
+   "w": 875,
+   "h": 1163,
+   "web": "assets/maps/caves-of-irem-2.jpg",
+   "webSize": [
+    875,
+    1163
+   ]
+  }
+ ],
+ "Evershade Weald": [
+  {
+   "file": "Evershade Weald june 26.jpg",
+   "local": "wm/orig/Evershade_Weald_june_26.jpg",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/7/74/Evershade_Weald_june_26.jpg",
+   "w": 2560,
+   "h": 1711,
+   "web": "assets/maps/evershade-weald-1.jpg",
+   "webSize": [
+    2560,
+    1711
+   ]
+  }
+ ],
+ "Faelindral": [
+  {
+   "file": "Faelindral V2.jpg",
+   "local": "wm/orig/Faelindral_V2.jpg",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/b/b6/Faelindral_V2.jpg",
+   "w": 3528,
+   "h": 3456,
+   "web": "assets/maps/faelindral-1.jpg",
+   "webSize": [
+    3528,
+    3456
+   ]
+  }
+ ],
+ "Fallen Pass": [
+  {
+   "file": "Fallen pass v1.jpg",
+   "local": "wm/orig/Fallen_pass_v1.jpg",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/9/99/Fallen_pass_v1.jpg",
+   "w": 3888,
+   "h": 3744,
+   "web": "assets/maps/fallen-pass-1.jpg",
+   "webSize": [
+    3888,
+    3744
+   ]
+  }
+ ],
+ "Fallen Watch": [
+  {
+   "file": "Fallen watch map by skoop.png",
+   "local": "wm/orig/Fallen_watch_map_by_skoop.png",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/7/72/Fallen_watch_map_by_skoop.png",
+   "w": 2240,
+   "h": 4140,
+   "web": "assets/maps/fallen-watch-1.jpg",
+   "webSize": [
+    2240,
+    4140
+   ]
+  }
+ ],
+ "Glass Flats": [
+  {
+   "file": "Glass Flats Map.png",
+   "local": "wm/orig/Glass_Flats_Map.png",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/e/eb/Glass_Flats_Map.png",
+   "w": 9702,
+   "h": 5821,
+   "web": "assets/maps/glass-flats-1.jpg",
+   "webSize": [
+    4096,
+    2458
+   ]
+  }
+ ],
+ "Grain Cellar": [
+  {
+   "file": "Graincellar.png",
+   "local": "wm/orig/Graincellar.png",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/c/ca/Graincellar.png",
+   "w": 1475,
+   "h": 1066,
+   "web": "assets/maps/grain-cellar-1.jpg",
+   "webSize": [
+    1475,
+    1066
+   ]
+  },
+  {
+   "file": "Grain Cellar Isometric.jpg",
+   "local": "wm/orig/Grain_Cellar_Isometric.jpg",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/a/a9/Grain_Cellar_Isometric.jpg",
+   "w": 7200,
+   "h": 5400,
+   "web": "assets/maps/grain-cellar-2.jpg",
+   "webSize": [
+    4096,
+    3072
+   ]
+  }
+ ],
+ "Grimtide Sanctum": [
+  {
+   "file": "MAP GrimtideSanctum.png",
+   "local": "wm/orig/MAP_GrimtideSanctum.png",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/c/ce/MAP_GrimtideSanctum.png",
+   "w": 1600,
+   "h": 983,
+   "web": "assets/maps/grimtide-sanctum-1.jpg",
+   "webSize": [
+    1600,
+    983
+   ]
+  }
+ ],
+ "Infested Crypt": [
+  {
+   "file": "Infested Crypt Map.png",
+   "local": "wm/orig/Infested_Crypt_Map.png",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/c/cb/Infested_Crypt_Map.png",
+   "w": 3900,
+   "h": 3600,
+   "web": "assets/maps/infested-crypt-1.jpg",
+   "webSize": [
+    3900,
+    3600
+   ]
+  },
+  {
+   "file": "Infested-crypt-isometric.jpg",
+   "local": "wm/orig/Infested_crypt_isometric.jpg",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/9/93/Infested-crypt-isometric.jpg",
+   "w": 7200,
+   "h": 5400,
+   "web": "assets/maps/infested-crypt-2.jpg",
+   "webSize": [
+    4096,
+    3072
+   ]
+  }
+ ],
+ "Keeper's Bight": [
+  {
+   "file": "Keepersbighteg.png",
+   "local": "wm/orig/Keepersbighteg.png",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/1/19/Keepersbighteg.png",
+   "w": 5400,
+   "h": 7155,
+   "web": "assets/maps/keepers-bight-1.jpg",
+   "webSize": [
+    4096,
+    5427
+   ]
+  }
+ ],
+ "Rothold": [
+  {
+   "file": "Rothold map by skoop.png",
+   "local": "wm/orig/Rothold_map_by_skoop.png",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/3/34/Rothold_map_by_skoop.png",
+   "w": 4675,
+   "h": 2300,
+   "web": "assets/maps/rothold-1.jpg",
+   "webSize": [
+    4096,
+    2015
+   ]
+  }
+ ],
+ "Scarwood": [
+  {
+   "file": "Scarwood.png",
+   "local": "wm/orig/Scarwood.png",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/3/34/Scarwood.png",
+   "w": 9700,
+   "h": 6000,
+   "web": "assets/maps/scarwood-1.jpg",
+   "webSize": [
+    4096,
+    2534
+   ]
+  }
+ ],
+ "Shallow Shoals": [
+  {
+   "file": "Shallowshoalseg.png",
+   "local": "wm/orig/Shallowshoalseg.png",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/0/07/Shallowshoalseg.png",
+   "w": 2000,
+   "h": 4020,
+   "web": "assets/maps/shallow-shoals-1.jpg",
+   "webSize": [
+    2000,
+    4020
+   ]
+  },
+  {
+   "file": "BadShallowShoalMap.png",
+   "local": "wm/orig/BadShallowShoalMap.png",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/0/05/BadShallowShoalMap.png",
+   "w": 1179,
+   "h": 1359,
+   "web": "assets/maps/shallow-shoals-2.jpg",
+   "webSize": [
+    1179,
+    1359
+   ]
+  }
+ ],
+ "Sungreet Strand": [
+  {
+   "file": "Sungreet Strand v4.jpg",
+   "local": "wm/orig/Sungreet_Strand_v4.jpg",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/0/0c/Sungreet_Strand_v4.jpg",
+   "w": 5688,
+   "h": 3672,
+   "web": "assets/maps/sungreet-strand-1.jpg",
+   "webSize": [
+    4096,
+    2644
+   ]
+  }
+ ],
+ "Sunken Resort": [
+  {
+   "file": "Sunken resort.png",
+   "local": "wm/orig/Sunken_resort.png",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/5/5b/Sunken_resort.png",
+   "w": 2695,
+   "h": 4340,
+   "web": "assets/maps/sunken-resort-1.jpg",
+   "webSize": [
+    2695,
+    4340
+   ]
+  }
+ ],
+ "Tel Ekir": [
+  {
+   "file": "Tel-ekir-isometric.jpg",
+   "local": "wm/orig/Tel_ekir_isometric.jpg",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/f/f7/Tel-ekir-isometric.jpg",
+   "w": 7200,
+   "h": 5400,
+   "web": "assets/maps/tel-ekir-1.jpg",
+   "webSize": [
+    4096,
+    3072
+   ]
+  }
+ ],
+ "Tomb of the Last Wyrmsbane": [
+  {
+   "file": "WyrmsbaneCombined v0.91.png",
+   "local": "wm/orig/WyrmsbaneCombined_v0.91.png",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/f/f7/WyrmsbaneCombined_v0.91.png",
+   "w": 2760,
+   "h": 1710,
+   "web": "assets/maps/tomb-of-the-last-wyrmsbane-1.jpg",
+   "webSize": [
+    2760,
+    1710
+   ]
+  },
+  {
+   "file": "Wyrmsbane Tomb.png",
+   "local": "wm/orig/Wyrmsbane_Tomb.png",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/f/f4/Wyrmsbane_Tomb.png",
+   "w": 2373,
+   "h": 1653,
+   "web": "assets/maps/tomb-of-the-last-wyrmsbane-2.jpg",
+   "webSize": [
+    2373,
+    1653
+   ]
+  },
+  {
+   "file": "TombOfTheLastWyrmsbaneIsometric.jpg",
+   "local": "wm/orig/TombOfTheLastWyrmsbaneIsometric.jpg",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/f/fa/TombOfTheLastWyrmsbaneIsometric.jpg",
+   "w": 7200,
+   "h": 5400,
+   "web": "assets/maps/tomb-of-the-last-wyrmsbane-3.jpg",
+   "webSize": [
+    4096,
+    3072
+   ]
+  }
+ ],
+ "Underdocks": [
+  {
+   "file": "UnderdocksBottomFloorCity.png",
+   "local": "wm/orig/UnderdocksBottomFloorCity.png",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/c/c8/UnderdocksBottomFloorCity.png",
+   "w": 1274,
+   "h": 824,
+   "web": "assets/maps/underdocks-1.jpg",
+   "webSize": [
+    1274,
+    824
+   ]
+  },
+  {
+   "file": "Underdocks map.png",
+   "local": "wm/orig/Underdocks_map.png",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/0/00/Underdocks_map.png",
+   "w": 977,
+   "h": 1221,
+   "web": "assets/maps/underdocks-2.jpg",
+   "webSize": [
+    977,
+    1221
+   ]
+  },
+  {
+   "file": "UDcitadel1.jpg",
+   "local": "wm/orig/UDcitadel1.jpg",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/2/22/UDcitadel1.jpg",
+   "w": 1000,
+   "h": 1000,
+   "web": "assets/maps/underdocks-3.jpg",
+   "webSize": [
+    1000,
+    1000
+   ]
+  }
+ ],
+ "Vale of Zintar": [
+  {
+   "file": "Valeofzintareg.png",
+   "local": "wm/orig/Valeofzintareg.png",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/a/ab/Valeofzintareg.png",
+   "w": 5809,
+   "h": 9829,
+   "web": "assets/maps/vale-of-zintar-1.jpg",
+   "webSize": [
+    4096,
+    6931
+   ]
+  },
+  {
+   "file": "Vale of Zintar Map.png",
+   "local": "wm/orig/Vale_of_Zintar_Map.png",
+   "url": "https://static.wikitide.net/monstersandmemorieswiki/0/04/Vale_of_Zintar_Map.png",
+   "w": 3680,
+   "h": 4762,
+   "web": "assets/maps/vale-of-zintar-2.jpg",
+   "webSize": [
+    3680,
+    4762
+   ]
+  }
+ ]
+}

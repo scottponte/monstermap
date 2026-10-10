@@ -1,0 +1,214 @@
+__NOTOC__
+[[File:Shaded Dunes.png|400px|right|thumb|Shaded Dunes from a vantage point]]
+<br>
+Sand dunes to the west of [[Night Harbor]] filled with many dangers.
+{{ZoneDetails
+|QuickLinks      = [[Shaded_Dunes#Quests|Quests]] • [[Shaded_Dunes#Items|Items]] • [[Shaded_Dunes#NPCs|NPCs]]
+|Level           = -
+|MonsterTypes    = Ashira, Jackals, Crocodile, Fire Beetles, Scarabs, Snakes, Wererats, Giants
+|NotableNPC      = [[Dhajr Spitemaw]], [[Chompers]], [[Toma the Two-Faced]], [[Ojamar Antorious]], [[Yezkiel the Gatekeeper]], [[Head Researcher Aashir]]
+|Items           = [[Chompers' Tooth]], [[Chompers Hide Tunic]], [[Claw of the Ashira Hunter]], [[Spitemaw's Ring]], [[Toma's Signet Ring]], [[Filthy Cloth Hood]], [[Dark Buckler]], [[Dark Tower Shield]], [[Grimoire of Demonology]], [[Giant Fire Wedding Ring]], [[Sand Giant's Napkin]], [[Maleq's Toothpick]], [[Sand-Blasted Coif]], [[Duneshaper Gauntlets]], [[Shimmering Shadow Veil]], [[Moonwhisper Knot]], [[Shimmering Scimitar]], [[Umbracast Greaves]]
+|RelatedQuests   = [[Chompers' Hide Tunic Quest]], [[Escort Head Researcher Aashir]] 
+|AdjacentZones   = [[Night Harbor]], [[Tel Ekir]], [[Caves of Irem]], [[Ancient Crypt]], [[Infested Crypt]], [[Fallen Pass]]
+}}
+<br>
+{|cellspacing="0" cellpadding="0" style="border: 1px solid gray; max-width: 1000px;" width="100%"
+|-
+|style="background:#F5F0E8;padding:10px;"|
+[[File:Shaded Dunes Map.jpg|right|border|600px]]<br>
+====Shaded Dunes====
+1. Shift Click to open in new tab
+|}
+<br>
+== Traveling To and From ==
+* [[Night Harbor]]
+* [[Ancient Crypt]]
+* [[Fallen Pass]]
+* [[Infested Crypt]]
+* [[Tel Ekir]]
+
+==What's in this zone?==
+===Quests===
+{| class="wikitable sortable" cellpadding=5 style="border:1px solid #BBB; width:1100px;"
+! style="background-color: #faead3; text-align: left;"|Quest Name !! style="background-color: #faead3; text-align: left;"|Reward !! style="background-color: #faead3; text-align: left;"|Quest Giver !! style="background-color: #faead3; text-align: left;"|Minimum Level
+|-
+| [[Chompers' Hide Tunic Quest]] || [[Chompers Hide Tunic|Chompers' Hide Tunic]] || [[Cheikho]] || 1
+|-
+| [[Escort Head Researcher Aashir]] || [[Aashir's Earring]] || [[Head Researcher Aashir]] || 15
+|}
+
+===NPCs===
+{| class="wikitable sortable" cellpadding=5 style="border:1px solid #BBB; width:1100px;"
+! style="background-color: #faead3; text-align: left;"|Named NPCs !! style="background-color: #faead3; text-align: left;"|Race !! style="background-color: #faead3; text-align: left;"|Class !! style="background-color: #faead3; text-align: left;"|Level !! style="background-color: #faead3; text-align: left;" |Location !! style="background-color: #faead3; text-align: left;"|Known Loot !! style="background-color: #faead3; text-align: left;"|Description
+|- 
+| [[Chompers]] || Crocodile || - || ~16 || Crocs and Caimans 
+| [[Chompers' Tooth]], [[Chomper's Hide]]
+| Named Mob
+|-
+| [[Dhajr Spitemaw]] || Ashira || - || 8+ || Large Ashira Camp 
+| [[Claw of the Ashira Hunter]], [[Spitemaw's Ring]]
+| Named Mob
+|-
+| [[Blackscale]] || Snake || - || 28 || Oasis Island Water ||
+| Named Mob
+|-
+| [[Toma the Two-Faced]] || Wererat || - || 9+ || Smugglers Camp
+| [[Toma's Signet Ring]], [[Smuggler's Damaged Logbook]], [[Filthy Cloth Hood]]
+| Named Mob
+|-
+| [[Yezkiel the Gatekeeper]] || Skeleton || - || 20+ || Oasis Island
+| [[Dark Buckler]], [[Sindr's Horn]], [[Dark Tower Shield]], [[Grimoire of Demonology]]
+| Named Mob
+|-
+| [[Maleq]] || Sand Giant || - || ~40 || - || [[Giant Fire Wedding Ring]], [[Sand Giant's Napkin]], [[Maleq's Toothpick]], [[Sand-Blasted Coif]], [[Duneshaper Gauntlets]]
+| Named Mob
+|-
+|- 
+| [[a shimmering shadow]] || Shadow || Enchanter || ~30 || Ruins between Ancient Crypt entrance and Tel Ekir valley
+| [[Shimmering Shadow Veil]], [[Moonwhisper Knot]], [[Shimmering Scimitar]], [[Umbracast Greaves]]
+| Named Mob
+|-
+! style="background-color: #faead3; text-align: left;"|Common NPCs!! style="background-color: #faead3; text-align: left;"|Race !! style="background-color: #faead3; text-align: left;"|Class !! style="background-color: #faead3; text-align: left;"|Level !! style="background-color: #faead3; text-align: left;" |Location !! style="background-color: #faead3; text-align: left;"|Known Loot !! style="background-color: #faead3; text-align: left;"|Description
+|- 
+| [[Ojamar Antorious]] || Human || - || 60 || Wizard Spire || - || Spell Merchant
+|-
+| [[a cultist]] || Human || Fighter, Cleric, Wizard || - || Ancient Crypt Entrance || - || Only at Night
+|-
+| [[a risen guard]] || Skeleton || - || - || Ancient Crypt Entrance || - || Only at Night
+|-
+| [[a risen deacon]] || Skeleton || Cleric || - || Ancient Crypt Entrance || - || Only at Night
+|-
+| [[a risen thaumaturgist]] || Skeleton || Wizard || - || Ancient Crypt Entrance || - || Only at Night
+|-
+| [[a risen officer]] || Skeleton || - || - || Ancient Crypt Entrance || - || Only at Night
+|-
+| [[a risen commander]] || Skeleton || - || - || Ancient Crypt Entrance || - || Only at Night
+|-
+| [[Head Researcher Aashir]] || Human || - || - || Ancient Crypt Entrance || - || Quest NPC, Only at Day
+|-
+| [[an archaeologist]] || Human || - || - || Ancient Crypt Entrance || - || Only at Day
+|-
+| [[a researcher]] || Human || - || - || Ancient Crypt Entrance || - || Only at Day
+|-
+| [[a senior researcher]] || Human || - || - || Ancient Crypt Entrance || - || Only at Day
+|-
+| [[a theologian]] || Human || - || - || Ancient Crypt Entrance || - || Only at Day
+|-
+| [[a dunes scarab]] || Scarab|| - || 3 || - || - || Only at Night
+|-
+| [[an ashira scout]] || Ashira || - || - || - || - || -
+|-
+| [[a large rat]] || Rat || - || 1 || - || - || -
+|-
+| [[a rattlesnake]] || Snake || - || 4 || - || - || -
+|-
+| [[a dunes madman]] || Human || - || 10 || - || - || -
+|-
+| [[a giant spider]] || Spider|| - || - || - || - || -
+|-
+| [[an ashira ambusher]] || Ashira || - || - || - || - || -
+|-
+| [[a sickened ashira]] || Ashira || - || - || - || - || -
+|-
+| [[a giant dunes scarab]] || Scarab || - || 10 || - || - || -
+|-
+| [[a famished zombie]] || Zombie || - || - || Undead Ruins || - || -
+|-
+| [[a grave mummy]] || Zombie || - || - || Undead Ruins || - || -
+|-
+| [[a burned skeleton]] || Skeleton || - || - || Undead Ruins || - || -
+|-
+| [[a caiman]] || Crocodile || - || ~8-9 || Coastline || - || -
+|-
+| [[a crocodile]] || Crocodile || - || 12-13 || Coastline || - || -
+|-
+| [[a hunter]] || Human || - || - || Hunter Camp || - || -
+|-
+| [[Cheikho]] || Human || - || - || Hunter Camp || - || Merchant
+|-
+| [[a ghoul]] || Ghoul || - || 14-16 || Oasis Island || - || -
+|-
+| [[a water viper]] || Snake || - || 26 || Oasis Island water || - || -
+|-
+| [[a spiderling]] || Spider || - || 2 || - || - || -
+|-
+| [[a snake]] || Snake || - || - || - || - || -
+|-
+| [[a rotting skeleton]] || Skeleton || - || 1 || - || - || -
+|-
+| [[a jackal pup]] || Jackal || - || 1 || - || - || -
+|-
+| [[a fire beetle]] || Human || - || - || - || - || -
+|-
+| [[a desert bat]] || Human || - || 1 || - || - || -
+|-
+| [[an ashira warrior]] || Ashira || - || - || - || - || -
+|-
+| [[an ashira lookout]] || Ashira || - || - || - || - || -
+|-
+| [[a jackal]] || Jackal || - || 4 || - || - || -
+|-
+| [[an ashira spearfisher]] || Ashira || - || - || - || - || -
+|-
+| [[a large dunes bat]] || Bat || - || 3 || - || - || -
+|-
+| [[a blister beetle]] || Beetle || - || - || - || - || -
+|-
+| [[a crocodile hatchling]] || Crocodile || - || 3-4 || Coastline || - || -
+|-
+| [[a willowisp]] || Wisp || - || - || - || - || Only at night
+|-
+| [[a bandit]] || Human, Ogre || Fighter, Archer, Cleric, Shaman, Wizard || 10-13 || - || - || -
+|-
+| [[a shadow]] || Shadow || - || 25-27 || Ruins between Ancient Crypt entrance and Tel Ekir valley || - || -
+|-
+| [[a sand giant scout]] || Giant || - || ~35 || - || - || -
+|-
+|}
+
+===Items===
+{| class="wikitable sortable" cellpadding=5 style="border:1px solid #BBB; width:1100px;"
+! style="background-color: #faead3; text-align: left;"|Item Name !! style="background-color: #faead3; text-align: left;"|Drops From !! style="background-color: #faead3; text-align: left;"|Slot
+|-
+| [[Chompers' Tooth]] || [[Chompers]]  || Primary, Secondary 
+|-
+| [[Chompers Hide Tunic]] - Quest || [[Chompers]]  || Chest 
+|-
+| [[Claw of the Ashira Hunter]] || [[Dhajr Spitemaw]]  || Primary, Secondary
+|-
+| [[Spitemaw's Ring]] || [[Dhajr Spitemaw]]  || Finger
+|-
+| [[Toma's Signet Ring]] || [[Toma the Two-Faced]]  || Finger
+|-
+| [[Filthy Cloth Hood]] || [[Toma the Two-Faced]]  || Head
+|-
+| [[Dark Buckler]] || [[Yezkiel the Gatekeeper]]  || Secondary
+|-
+| [[Dark Tower Shield]] || [[Yezkiel the Gatekeeper]]  || Secondary
+|-
+| [[Grimoire of Demonology]] || [[Yezkiel the Gatekeeper]]  || Secondary
+|-
+| [[Giant Fire Wedding Ring]] || [[Maleq]]  || Finger
+|-
+| [[Sand Giant's Napkin]] || [[Maleq]]  || Back
+|-
+| [[Maleq's Toothpick]] || [[Maleq]]  || Primary
+|-
+| [[Sand-Blasted Coif]] || [[Maleq]]  || Head
+|-
+| [[Duneshaper Gauntlets]] || [[Maleq]]  || Hands
+|-
+| [[Shimmering Shadow Veil]] || [[a shimmering shadow]]  || Face
+|-
+| [[Moonwhisper Knot]] || [[a shimmering shadow]]  || Range
+|-
+| [[Shimmering Scimitar]] || [[a shimmering shadow]]  || Primary, Secondary
+|-
+| [[Umbracast Greaves]] || [[a shimmering shadow]]  || Legs
+|}
+<br>
+<br>
+<br>
+<br>
+<br>
+[[Category:Zones]]

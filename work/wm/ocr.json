@@ -1,0 +1,279 @@
+{
+ "Ail'Vorith": [],
+ "Ancient Crypt": [
+  {
+   "to": "Shaded Dunes",
+   "x": 1214.5,
+   "y": 1306.8,
+   "text": "to Shaded Dunes",
+   "score": 1.0,
+   "is_to": true
+  }
+ ],
+ "Blacktide Bay": [
+  {
+   "to": "Keeper's Bight",
+   "x": 1506.0,
+   "y": 1735.1,
+   "text": "To KEEPERS BIGHT",
+   "score": 0.96,
+   "is_to": true
+  }
+ ],
+ "Blind Midden": [],
+ "Caves of Irem": [
+  {
+   "to": "Great Cavern Sea",
+   "x": 1275.7,
+   "y": 78.4,
+   "text": "GREAT CAVERN SEA",
+   "score": 1.0,
+   "is_to": false
+  },
+  {
+   "to": "Rothold",
+   "x": 511.5,
+   "y": 742.0,
+   "text": "ROTHOLD",
+   "score": 1.0,
+   "is_to": false
+  },
+  {
+   "to": "Underdocks",
+   "x": 1244.0,
+   "y": 940.5,
+   "text": "UNDERDOCKS",
+   "score": 1.0,
+   "is_to": false
+  }
+ ],
+ "Evershade Weald": [],
+ "Faelindral": [],
+ "Fallen Pass": [
+  {
+   "to": "Shaded Dunes",
+   "x": 1482.3,
+   "y": 336.5,
+   "text": "to Shaded Dunes",
+   "score": 1.0,
+   "is_to": true
+  },
+  {
+   "to": "Fallen Watch",
+   "x": 1226.1,
+   "y": 749.3,
+   "text": "Fallen Watch",
+   "score": 1.0,
+   "is_to": false
+  }
+ ],
+ "Fallen Watch": [],
+ "Glass Flats": [
+  {
+   "to": "Vale of Zintar",
+   "x": 21.3,
+   "y": 427.5,
+   "text": "Vale of Zintar",
+   "score": 1.0,
+   "is_to": false
+  },
+  {
+   "to": "Sungreet Strand",
+   "x": 1320.7,
+   "y": 931.5,
+   "text": "Sungreet Strand",
+   "score": 1.0,
+   "is_to": false
+  }
+ ],
+ "Grain Cellar": [],
+ "Grimtide Sanctum": [],
+ "Infested Crypt": [
+  {
+   "to": "Shaded Dunes",
+   "x": 484.3,
+   "y": 1253.3,
+   "text": "to Shaded 1",
+   "score": 0.7,
+   "is_to": true
+  }
+ ],
+ "Keeper's Bight": [
+  {
+   "to": "Evershade Weald",
+   "x": 1351.5,
+   "y": 96.8,
+   "text": "Evershade Weald",
+   "score": 1.0,
+   "is_to": false
+  },
+  {
+   "to": "Scarwood",
+   "x": 1571.2,
+   "y": 406.9,
+   "text": "Scarwopd",
+   "score": 0.88,
+   "is_to": false
+  },
+  {
+   "to": "Shallow Shoals",
+   "x": 34.0,
+   "y": 970.1,
+   "text": "llow Shoals",
+   "score": 0.88,
+   "is_to": false
+  },
+  {
+   "to": "Blacktide Bay",
+   "x": 792.7,
+   "y": 1596.4,
+   "text": "Blacktide Bay",
+   "score": 1.0,
+   "is_to": false
+  },
+  {
+   "to": "Vale of Zintar",
+   "x": 158.0,
+   "y": 2072.5,
+   "text": "Vale of zintar",
+   "score": 1.0,
+   "is_to": false
+  }
+ ],
+ "Rothold": [
+  {
+   "to": "Great Cavern Sea",
+   "x": 70.1,
+   "y": 174.9,
+   "text": "Great Cavern",
+   "score": 0.86,
+   "is_to": false
+  }
+ ],
+ "Scarwood": [
+  {
+   "to": "Keeper's Bight",
+   "x": 14.5,
+   "y": 498.7,
+   "text": "Keeper's Bight",
+   "score": 1.0,
+   "is_to": false
+  },
+  {
+   "to": "Fields of the Lost",
+   "x": 1588.1,
+   "y": 219.7,
+   "text": "Fields pf the Lost",
+   "score": 0.94,
+   "is_to": false
+  },
+  {
+   "to": "Sunken Resort",
+   "x": 630.9,
+   "y": 724.0,
+   "text": "Sunken Resort",
+   "score": 1.0,
+   "is_to": false
+  }
+ ],
+ "Shallow Shoals": [
+  {
+   "to": "Keeper's Bight",
+   "x": 1556.0,
+   "y": 658.0,
+   "text": "Keeper's Bight",
+   "score": 1.0,
+   "is_to": false
+  },
+  {
+   "to": "Vale of Zintar",
+   "x": 1559.2,
+   "y": 2484.4,
+   "text": "Vale of Zintar",
+   "score": 1.0,
+   "is_to": false
+  }
+ ],
+ "Sungreet Strand": [
+  {
+   "to": "Tel Ekir",
+   "x": 1266.1,
+   "y": 31.3,
+   "text": "to Tel Ekir",
+   "score": 1.0,
+   "is_to": true
+  },
+  {
+   "to": "Glass Flats",
+   "x": 1517.9,
+   "y": 428.7,
+   "text": "to Glass FL",
+   "score": 0.84,
+   "is_to": true
+  },
+  {
+   "to": "Night Harbor",
+   "x": 94.7,
+   "y": 594.5,
+   "text": " to Night Harbor",
+   "score": 0.89,
+   "is_to": true
+  }
+ ],
+ "Sunken Resort": [],
+ "Tel Ekir": [
+  {
+   "to": "Sungreet Strand",
+   "x": 1460.9,
+   "y": 237.1,
+   "text": "SUNGREET STRAND",
+   "score": 1.0,
+   "is_to": false
+  }
+ ],
+ "Tomb of the Last Wyrmsbane": [
+  {
+   "to": "Ancient Crypt",
+   "x": 677.1,
+   "y": 857.5,
+   "text": "To Ancient Crypt",
+   "score": 1.0,
+   "is_to": true
+  },
+  {
+   "to": "Night Harbor",
+   "x": 897.1,
+   "y": 939.1,
+   "text": "To Night Harbor",
+   "score": 1.0,
+   "is_to": true
+  }
+ ],
+ "Underdocks": [],
+ "Vale of Zintar": [
+  {
+   "to": "Keeper's Bight",
+   "x": 141.1,
+   "y": 96.5,
+   "text": "Keeper's Bight",
+   "score": 1.0,
+   "is_to": false
+  },
+  {
+   "to": "Shallow Shoals",
+   "x": 37.1,
+   "y": 1363.9,
+   "text": "Shallow Shoals",
+   "score": 1.0,
+   "is_to": false
+  },
+  {
+   "to": "Fallen Pass",
+   "x": 77.6,
+   "y": 2626.7,
+   "text": "Fallen Pass",
+   "score": 1.0,
+   "is_to": false
+  }
+ ]
+}

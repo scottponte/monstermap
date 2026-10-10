@@ -1,0 +1,9 @@
+{
+  "_comment": "Exit labels the OCR missed, measured by hand from the review sheets (map units, 1600 wide).",
+  "Ancient Crypt":   { "Tomb of the Last Wyrmsbane": { "x": 1106, "y": 235, "text": "to Wyrmsbane Tomb" } },
+  "Caves of Irem":   { "Tomb of the Last Wyrmsbane": { "x": 790, "y": 761, "text": "WYRMSBANE" } },
+  "Fallen Pass":     { "Vale of Zintar": { "x": 729, "y": 87, "text": "to Vale of Zintar" } },
+  "Shallow Shoals":  { "Fallen Pass": { "x": 793, "y": 3153, "text": "Fallen Pass" },
+                       "Grimtide Sanctum": { "x": 1222, "y": 812, "text": "Grimtide Sanctum" } },
+  "Vale of Zintar":  { "Glass Flats": { "x": 1561, "y": 522, "text": "Glass Flats" } }
+}

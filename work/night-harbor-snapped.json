@@ -1,0 +1,705 @@
+[
+ {
+  "id": "icon-001",
+  "type": "humanoid",
+  "x": 3705.3,
+  "y": 415.7,
+  "size": 62,
+  "color": "green"
+ },
+ {
+  "id": "icon-002",
+  "type": "ring",
+  "x": 3408.8,
+  "y": 884.1,
+  "size": 73,
+  "color": "cyan"
+ },
+ {
+  "id": "icon-003",
+  "type": "inn",
+  "x": 3576.0,
+  "y": 1044.0,
+  "size": 66
+ },
+ {
+  "id": "icon-004",
+  "type": "ring",
+  "x": 3894.9,
+  "y": 1063.2,
+  "size": 78,
+  "color": "green"
+ },
+ {
+  "id": "icon-005",
+  "type": "humanoid",
+  "x": 4966.1,
+  "y": 329.7,
+  "size": 57,
+  "color": "red"
+ },
+ {
+  "id": "icon-006",
+  "type": "ring",
+  "x": 4422.9,
+  "y": 682.6,
+  "size": 73,
+  "color": "cyan"
+ },
+ {
+  "id": "icon-007",
+  "type": "humanoid",
+  "x": 4983.0,
+  "y": 846.5,
+  "size": 50,
+  "color": "blue"
+ },
+ {
+  "id": "icon-008",
+  "type": "ring",
+  "x": 5146.3,
+  "y": 1102.7,
+  "size": 76,
+  "color": "cyan"
+ },
+ {
+  "id": "icon-009",
+  "type": "ts_farming",
+  "x": 4597.5,
+  "y": 1198.5,
+  "size": 67
+ },
+ {
+  "id": "icon-010",
+  "type": "humanoid",
+  "x": 700.3,
+  "y": 1295.8,
+  "size": 50,
+  "color": "blue"
+ },
+ {
+  "id": "icon-011",
+  "type": "humanoid",
+  "x": 1363.5,
+  "y": 1589.8,
+  "size": 50,
+  "color": "blue"
+ },
+ {
+  "id": "icon-012",
+  "type": "ring",
+  "x": 667.6,
+  "y": 1903.0,
+  "size": 76,
+  "color": "cyan"
+ },
+ {
+  "id": "icon-013",
+  "type": "ring",
+  "x": 1095.9,
+  "y": 2192.8,
+  "size": 73,
+  "color": "cyan"
+ },
+ {
+  "id": "icon-014",
+  "type": "stable",
+  "x": 1403.0,
+  "y": 1834.5,
+  "size": 66
+ },
+ {
+  "id": "icon-015",
+  "type": "ts_herbalism",
+  "x": 1374.5,
+  "y": 1923.5,
+  "size": 60
+ },
+ {
+  "id": "icon-016",
+  "type": "masonry",
+  "x": 1814.5,
+  "y": 1497.5,
+  "size": 60
+ },
+ {
+  "id": "icon-017",
+  "type": "humanoid",
+  "x": 1883.9,
+  "y": 1458.0,
+  "size": 51,
+  "color": "blue",
+  "letter": "W"
+ },
+ {
+  "id": "icon-018",
+  "type": "ts_stone_cutting",
+  "x": 1947.5,
+  "y": 1466.5,
+  "size": 67
+ },
+ {
+  "id": "icon-019",
+  "type": "ts_tinkering",
+  "x": 1946.5,
+  "y": 1537.5,
+  "size": 60
+ },
+ {
+  "id": "icon-020",
+  "type": "ts_survival",
+  "x": 1508.5,
+  "y": 1621.5,
+  "size": 64
+ },
+ {
+  "id": "icon-021",
+  "type": "ts_wilderness",
+  "x": 1718.5,
+  "y": 1615.5,
+  "size": 72
+ },
+ {
+  "id": "icon-022",
+  "type": "ts_lumberjacking",
+  "x": 1553.5,
+  "y": 1796.5,
+  "size": 69
+ },
+ {
+  "id": "icon-023",
+  "type": "ts_riding",
+  "x": 1461.5,
+  "y": 1834.5,
+  "size": 62
+ },
+ {
+  "id": "icon-024",
+  "type": "ts_mining",
+  "x": 1724.5,
+  "y": 1839.5,
+  "size": 60
+ },
+ {
+  "id": "icon-025",
+  "type": "ts_first_aid",
+  "x": 1435.5,
+  "y": 1909.5,
+  "size": 63
+ },
+ {
+  "id": "icon-026",
+  "type": "shady",
+  "x": 1645.0,
+  "y": 1961.0,
+  "size": 70
+ },
+ {
+  "id": "icon-027",
+  "type": "stall",
+  "x": 1927.0,
+  "y": 1985.5,
+  "size": 44
+ },
+ {
+  "id": "icon-028",
+  "type": "bank",
+  "x": 1828.5,
+  "y": 2041.5,
+  "size": 67
+ },
+ {
+  "id": "icon-029",
+  "type": "stall",
+  "x": 1492.0,
+  "y": 2087.5,
+  "size": 44
+ },
+ {
+  "id": "icon-030",
+  "type": "ts_wagoneering",
+  "x": 1470.5,
+  "y": 2183.5,
+  "size": 61
+ },
+ {
+  "id": "icon-031",
+  "type": "ts_cooking",
+  "x": 1610.5,
+  "y": 2184.5,
+  "size": 60
+ },
+ {
+  "id": "icon-032",
+  "type": "ts_animal_taming",
+  "x": 1471.5,
+  "y": 2264.5,
+  "size": 63
+ },
+ {
+  "id": "icon-033",
+  "type": "inn",
+  "x": 1610.0,
+  "y": 2273.0,
+  "size": 66
+ },
+ {
+  "id": "icon-034",
+  "type": "humanoid",
+  "x": 2175.3,
+  "y": 1827.0,
+  "size": 49,
+  "color": "blue"
+ },
+ {
+  "id": "icon-035",
+  "type": "ts_leatherworking",
+  "x": 2248.5,
+  "y": 1833.5,
+  "size": 60
+ },
+ {
+  "id": "icon-036",
+  "type": "ts_skinning",
+  "x": 2287.5,
+  "y": 1903.5,
+  "size": 60
+ },
+ {
+  "id": "icon-037",
+  "type": "ring",
+  "x": 3183.4,
+  "y": 1396.2,
+  "size": 73,
+  "color": "cyan"
+ },
+ {
+  "id": "icon-038",
+  "type": "ts_archaeology",
+  "x": 3531.5,
+  "y": 1286.5,
+  "size": 63
+ },
+ {
+  "id": "icon-039",
+  "type": "ts_alchemy",
+  "x": 3667.5,
+  "y": 1250.5,
+  "size": 64
+ },
+ {
+  "id": "icon-040",
+  "type": "ring",
+  "x": 3018.1,
+  "y": 1813.0,
+  "size": 78,
+  "color": "yellow"
+ },
+ {
+  "id": "icon-041",
+  "type": "humanoid",
+  "x": 3400.6,
+  "y": 1728.2,
+  "size": 51,
+  "color": "blue"
+ },
+ {
+  "id": "icon-042",
+  "type": "inn",
+  "x": 3416.0,
+  "y": 1907.5,
+  "size": 66
+ },
+ {
+  "id": "icon-043",
+  "type": "star",
+  "x": 4067.1,
+  "y": 1543.7,
+  "size": 43
+ },
+ {
+  "id": "icon-044",
+  "type": "ts_survival",
+  "x": 3874.5,
+  "y": 1638.5,
+  "size": 65
+ },
+ {
+  "id": "icon-045",
+  "type": "stable",
+  "x": 3943.0,
+  "y": 1642.5,
+  "size": 66
+ },
+ {
+  "id": "icon-046",
+  "type": "shady",
+  "x": 4027.5,
+  "y": 1641.5,
+  "size": 69
+ },
+ {
+  "id": "icon-047",
+  "type": "humanoid",
+  "x": 4211.0,
+  "y": 1653.0,
+  "size": 50,
+  "color": "blue",
+  "letter": "P/M"
+ },
+ {
+  "id": "icon-048",
+  "type": "bank",
+  "x": 3938.5,
+  "y": 1886.0,
+  "size": 65
+ },
+ {
+  "id": "icon-049",
+  "type": "stall",
+  "x": 4148.0,
+  "y": 1853.0,
+  "size": 46
+ },
+ {
+  "id": "icon-050",
+  "type": "ring",
+  "x": 4326.9,
+  "y": 1273.3,
+  "size": 73,
+  "color": "cyan"
+ },
+ {
+  "id": "icon-051",
+  "type": "shady",
+  "x": 4472.0,
+  "y": 1536.5,
+  "size": 70
+ },
+ {
+  "id": "icon-052",
+  "type": "ts_spellcrafting",
+  "x": 4708.5,
+  "y": 1643.5,
+  "size": 66
+ },
+ {
+  "id": "icon-053",
+  "type": "ts_astrology",
+  "x": 4779.5,
+  "y": 1629.5,
+  "size": 60
+ },
+ {
+  "id": "icon-054",
+  "type": "ts_tailoring",
+  "x": 4366.5,
+  "y": 1738.5,
+  "size": 61
+ },
+ {
+  "id": "icon-055",
+  "type": "ts_spinning",
+  "x": 4423.5,
+  "y": 1739.5,
+  "size": 60
+ },
+ {
+  "id": "icon-056",
+  "type": "stall",
+  "x": 4496.0,
+  "y": 1783.5,
+  "size": 44
+ },
+ {
+  "id": "icon-057",
+  "type": "ts_cooking",
+  "x": 4409.5,
+  "y": 1846.5,
+  "size": 63
+ },
+ {
+  "id": "icon-058",
+  "type": "inn",
+  "x": 4344.0,
+  "y": 1880.5,
+  "size": 66
+ },
+ {
+  "id": "icon-059",
+  "type": "star",
+  "x": 1407.7,
+  "y": 2545.9,
+  "size": 45
+ },
+ {
+  "id": "icon-060",
+  "type": "stable",
+  "x": 1433.0,
+  "y": 2718.5,
+  "size": 66
+ },
+ {
+  "id": "icon-061",
+  "type": "ts_riding",
+  "x": 1433.5,
+  "y": 2792.5,
+  "size": 62
+ },
+ {
+  "id": "icon-062",
+  "type": "humanoid",
+  "x": 1445.5,
+  "y": 2859.8,
+  "size": 48,
+  "color": "blue"
+ },
+ {
+  "id": "icon-063",
+  "type": "ts_fletching",
+  "x": 1228.5,
+  "y": 2910.5,
+  "size": 58
+ },
+ {
+  "id": "icon-064",
+  "type": "shady",
+  "x": 895.5,
+  "y": 2840.0,
+  "size": 66
+ },
+ {
+  "id": "icon-065",
+  "type": "ring",
+  "x": 772.8,
+  "y": 2902.1,
+  "size": 73,
+  "color": "cyan"
+ },
+ {
+  "id": "icon-066",
+  "type": "ring",
+  "x": 728.4,
+  "y": 3630.8,
+  "size": 76,
+  "color": "cyan"
+ },
+ {
+  "id": "icon-067",
+  "type": "humanoid",
+  "x": 1541.6,
+  "y": 2548.4,
+  "size": 49,
+  "color": "blue"
+ },
+ {
+  "id": "icon-068",
+  "type": "ts_spycraft",
+  "x": 1748.5,
+  "y": 2549.5,
+  "size": 65
+ },
+ {
+  "id": "icon-069",
+  "type": "inn",
+  "x": 1756.0,
+  "y": 2447.0,
+  "size": 68
+ },
+ {
+  "id": "icon-070",
+  "type": "stall",
+  "x": 1895.0,
+  "y": 2458.5,
+  "size": 44
+ },
+ {
+  "id": "icon-071",
+  "type": "ts_jewelcrafting",
+  "x": 2074.5,
+  "y": 2481.5,
+  "size": 63
+ },
+ {
+  "id": "icon-072",
+  "type": "inn",
+  "x": 2148.0,
+  "y": 2459.0,
+  "size": 64
+ },
+ {
+  "id": "icon-073",
+  "type": "stall",
+  "x": 2480.0,
+  "y": 2561.0,
+  "size": 44
+ },
+ {
+  "id": "icon-074",
+  "type": "ts_tailoring",
+  "x": 2106.5,
+  "y": 2628.5,
+  "size": 67
+ },
+ {
+  "id": "icon-075",
+  "type": "ts_blacksmithing",
+  "x": 2170.5,
+  "y": 2661.5,
+  "size": 63
+ },
+ {
+  "id": "icon-076",
+  "type": "humanoid",
+  "x": 2343.6,
+  "y": 2630.1,
+  "size": 48,
+  "color": "blue",
+  "letter": "R"
+ },
+ {
+  "id": "icon-077",
+  "type": "stall",
+  "x": 1952.5,
+  "y": 2684.5,
+  "size": 45
+ },
+ {
+  "id": "icon-078",
+  "type": "ts_pottery",
+  "x": 2308.5,
+  "y": 2736.5,
+  "size": 65
+ },
+ {
+  "id": "icon-079",
+  "type": "stable",
+  "x": 2770.0,
+  "y": 2724.5,
+  "size": 66
+ },
+ {
+  "id": "icon-080",
+  "type": "ts_fletching",
+  "x": 2823.5,
+  "y": 2929.5,
+  "size": 65
+ },
+ {
+  "id": "icon-081",
+  "type": "humanoid",
+  "x": 1506.2,
+  "y": 2975.4,
+  "size": 50,
+  "color": "blue",
+  "letter": "P/B"
+ },
+ {
+  "id": "icon-082",
+  "type": "goblin",
+  "x": 2358.0,
+  "y": 3270.4,
+  "size": 49,
+  "color": "green"
+ },
+ {
+  "id": "icon-083",
+  "type": "ring",
+  "x": 2640.4,
+  "y": 3138.8,
+  "size": 74,
+  "color": "cyan"
+ },
+ {
+  "id": "icon-084",
+  "type": "ts_enchanting",
+  "x": 3506.5,
+  "y": 2966.5,
+  "size": 67
+ },
+ {
+  "id": "icon-085",
+  "type": "inn",
+  "x": 3819.0,
+  "y": 3021.5,
+  "size": 66
+ },
+ {
+  "id": "icon-086",
+  "type": "ring",
+  "x": 3785.5,
+  "y": 3157.1,
+  "size": 73,
+  "color": "cyan"
+ },
+ {
+  "id": "icon-087",
+  "type": "ts_navigation",
+  "x": 4151.5,
+  "y": 3129.5,
+  "size": 62
+ },
+ {
+  "id": "icon-088",
+  "type": "ts_carpentry",
+  "x": 4115.5,
+  "y": 3179.5,
+  "size": 63
+ },
+ {
+  "id": "icon-089",
+  "type": "bank",
+  "x": 3154.5,
+  "y": 3308.0,
+  "size": 67
+ },
+ {
+  "id": "icon-090",
+  "type": "humanoid",
+  "x": 4113.3,
+  "y": 3439.5,
+  "size": 64,
+  "color": "red",
+  "letter": "+"
+ },
+ {
+  "id": "icon-091",
+  "type": "humanoid",
+  "x": 4725.4,
+  "y": 2746.1,
+  "size": 64,
+  "color": "red"
+ },
+ {
+  "id": "icon-092",
+  "type": "humanoid",
+  "x": 4713.3,
+  "y": 3022.9,
+  "size": 63,
+  "color": "orange"
+ },
+ {
+  "id": "icon-093",
+  "type": "ts_cartography",
+  "x": 5265.5,
+  "y": 3503.5,
+  "size": 63
+ },
+ {
+  "id": "icon-094",
+  "type": "ring",
+  "x": 4689.2,
+  "y": 3570.6,
+  "size": 82,
+  "color": "yellow"
+ },
+ {
+  "id": "icon-095",
+  "type": "humanoid",
+  "x": 4744.0,
+  "y": 3738.4,
+  "size": 64,
+  "color": "red",
+  "letter": "+"
+ }
+]

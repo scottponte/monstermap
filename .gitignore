@@ -1,0 +1,14 @@
+# Local preview config
+.claude/
+
+# Build inputs that can be downloaded again (see README, "Rebuilding the clean maps")
+work/nh_full.jpg
+work/sd_full.jpg
+work/wm/orig/
+work/thumbs/
+work/*.png
+work/__pycache__/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
